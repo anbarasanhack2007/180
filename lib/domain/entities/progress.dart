@@ -75,7 +75,20 @@ class UserProgress extends Equatable {
   int get totalStudyHours => totalStudyMinutes ~/ 60;
 
   int get level {
-    final thresholds = [0, 100, 250, 500, 900, 1400, 2100, 3000, 4200, 5700, 7500, 10000];
+    final thresholds = [
+      0,
+      100,
+      250,
+      500,
+      900,
+      1400,
+      2100,
+      3000,
+      4200,
+      5700,
+      7500,
+      10000
+    ];
     for (int i = thresholds.length - 1; i >= 0; i--) {
       if (xp >= thresholds[i]) return i + 1;
     }

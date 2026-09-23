@@ -2,7 +2,8 @@ class AppConstants {
   AppConstants._();
 
   static const String appName = 'CyberSprint 180';
-  static const String appTagline = '180 Days. One Skillset. A Cybersecurity Career.';
+  static const String appTagline =
+      '180 Days. One Skillset. A Cybersecurity Career.';
   static const String appVersion = '1.0.0';
 
   static const int totalDays = 180;
@@ -21,12 +22,32 @@ class AppConstants {
 
   // Level Thresholds
   static const List<int> levelThresholds = [
-    0, 100, 250, 500, 900, 1400, 2100, 3000, 4200, 5700, 7500, 10000
+    0,
+    100,
+    250,
+    500,
+    900,
+    1400,
+    2100,
+    3000,
+    4200,
+    5700,
+    7500,
+    10000
   ];
   static const List<String> levelNames = [
-    'Rookie', 'Learner', 'Explorer', 'Analyst', 'Defender',
-    'Specialist', 'Expert', 'Elite', 'Master', 'Champion',
-    'Legend', 'Cyber God'
+    'Rookie',
+    'Learner',
+    'Explorer',
+    'Analyst',
+    'Defender',
+    'Specialist',
+    'Expert',
+    'Elite',
+    'Master',
+    'Champion',
+    'Legend',
+    'Cyber God'
   ];
 
   // Timer presets (minutes)
@@ -85,25 +106,39 @@ class AppConstants {
 
   // Interview categories
   static const List<String> interviewCategories = [
-    'Networking', 'Linux', 'Python', 'Web Security',
-    'OWASP', 'Burp Suite', 'SOC', 'SIEM',
-    'Incident Response', 'Cybersecurity Fundamentals',
+    'Networking',
+    'Linux',
+    'Python',
+    'Web Security',
+    'OWASP',
+    'Burp Suite',
+    'SOC',
+    'SIEM',
+    'Incident Response',
+    'Cybersecurity Fundamentals',
   ];
 
   // YouTube channel URLs
-  static const String ytProfessorMesser = 'https://www.youtube.com/@professormesser';
+  static const String ytProfessorMesser =
+      'https://www.youtube.com/@professormesser';
   static const String ytFreeCodeCamp = 'https://www.youtube.com/@freecodecamp';
   static const String ytCoreySchafer = 'https://www.youtube.com/@coreyms';
-  static const String ytPortSwigger = 'https://www.youtube.com/@PortSwiggerOfficial';
+  static const String ytPortSwigger =
+      'https://www.youtube.com/@PortSwiggerOfficial';
   static const String ytJohnHammond = 'https://www.youtube.com/@_JohnHammond';
   static const String ytTCM = 'https://www.youtube.com/@TCMSecurityAcademy';
 
   // TryHackMe paths
-  static const String thmPreSecurity = 'https://tryhackme.com/path/outline/presecurity';
-  static const String thmCyberSecurity101 = 'https://tryhackme.com/path/outline/cybersecurity101';
-  static const String thmJrPenTester = 'https://tryhackme.com/path/outline/jrpenetrationtester';
-  static const String thmSocLevel1 = 'https://tryhackme.com/path/outline/soclevel1';
+  static const String thmPreSecurity =
+      'https://tryhackme.com/path/outline/presecurity';
+  static const String thmCyberSecurity101 =
+      'https://tryhackme.com/path/outline/cybersecurity101';
+  static const String thmJrPenTester =
+      'https://tryhackme.com/path/outline/jrpenetrationtester';
+  static const String thmSocLevel1 =
+      'https://tryhackme.com/path/outline/soclevel1';
 
   // PortSwigger
-  static const String portSwiggerWebSecurity = 'https://portswigger.net/web-security';
+  static const String portSwiggerWebSecurity =
+      'https://portswigger.net/web-security';
 }

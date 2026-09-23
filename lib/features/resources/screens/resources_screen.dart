@@ -9,7 +9,8 @@ import '../../../services/supabase_service.dart';
 final resourcesFilterProvider = StateProvider<String>((ref) => 'All');
 final resourcesSearchQueryProvider = StateProvider<String>((ref) => '');
 
-final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async {
+final allResourcesProvider =
+    FutureProvider<List<Map<String, dynamic>>>((ref) async {
   try {
     final data = await SupabaseService.resources
         .select()
@@ -25,8 +26,10 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'category': 'Certification',
       'type': 'video',
       'platform': 'YouTube',
-      'url': 'https://www.youtube.com/playlist?list=PLG49S3nxzAnl4QDVqK-hOnoqcSKEIDDuv',
-      'description': 'Complete video training series covering core cybersecurity principles, threats, attacks, vulnerabilities, and architecture.',
+      'url':
+          'https://www.youtube.com/playlist?list=PLG49S3nxzAnl4QDVqK-hOnoqcSKEIDDuv',
+      'description':
+          'Complete video training series covering core cybersecurity principles, threats, attacks, vulnerabilities, and architecture.',
       'icon': 'school',
     },
     {
@@ -36,7 +39,8 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'type': 'lab',
       'platform': 'TryHackMe',
       'url': 'https://tryhackme.com/path/outline/beginner',
-      'description': 'Interactive cybersecurity rooms covering networking, Linux fundamentals, web application security, and basic penetration testing.',
+      'description':
+          'Interactive cybersecurity rooms covering networking, Linux fundamentals, web application security, and basic penetration testing.',
       'icon': 'terminal',
     },
     {
@@ -46,7 +50,8 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'type': 'lab',
       'platform': 'PortSwigger',
       'url': 'https://portswigger.net/web-security',
-      'description': 'Free web security training containing theory and interactive practice labs covering SQL injection, XSS, CSRF, and SSRF.',
+      'description':
+          'Free web security training containing theory and interactive practice labs covering SQL injection, XSS, CSRF, and SSRF.',
       'icon': 'language',
     },
     {
@@ -56,7 +61,8 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'type': 'video',
       'platform': 'YouTube',
       'url': 'https://www.youtube.com/@NetworkChuck',
-      'description': 'Hands-on Wireshark packet analysis, Subnetting, TCP/IP deep-dives, and router/firewall configuration tutorials.',
+      'description':
+          'Hands-on Wireshark packet analysis, Subnetting, TCP/IP deep-dives, and router/firewall configuration tutorials.',
       'icon': 'hub',
     },
     {
@@ -66,7 +72,8 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'type': 'video',
       'platform': 'YouTube',
       'url': 'https://www.youtube.com/@_JohnHammond',
-      'description': 'Malware analysis breakdowns, CTF challenge walk-throughs, threat hunting, and modern attack tradecraft.',
+      'description':
+          'Malware analysis breakdowns, CTF challenge walk-throughs, threat hunting, and modern attack tradecraft.',
       'icon': 'security',
     },
     {
@@ -76,7 +83,8 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'type': 'doc',
       'platform': 'OWASP',
       'url': 'https://owasp.org/www-project-top-ten/',
-      'description': 'Official standard awareness document for developers and web application security pros.',
+      'description':
+          'Official standard awareness document for developers and web application security pros.',
       'icon': 'description',
     },
     {
@@ -86,7 +94,8 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'type': 'lab',
       'platform': 'OverTheWire',
       'url': 'https://overthewire.org/wargames/bandit/',
-      'description': 'A gamified SSH and command-line wargame geared for learning Linux commands and basic security mechanisms.',
+      'description':
+          'A gamified SSH and command-line wargame geared for learning Linux commands and basic security mechanisms.',
       'icon': 'code',
     },
     {
@@ -96,7 +105,8 @@ final allResourcesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) as
       'type': 'video',
       'platform': 'YouTube',
       'url': 'https://www.youtube.com/@ippsec',
-      'description': 'Legendary step-by-step video dissections of HackTheBox machines with OSCP-level enumeration and privilege escalation.',
+      'description':
+          'Legendary step-by-step video dissections of HackTheBox machines with OSCP-level enumeration and privilege escalation.',
       'icon': 'ondemand_video',
     },
   ];
@@ -151,7 +161,15 @@ class ResourcesScreen extends ConsumerWidget {
     final selectedFilter = ref.watch(resourcesFilterProvider);
     final searchQuery = ref.watch(resourcesSearchQueryProvider);
 
-    final categories = ['All', 'Web Security', 'Hands-on Labs', 'Offensive Security', 'Certification', 'Networking', 'Linux'];
+    final categories = [
+      'All',
+      'Web Security',
+      'Hands-on Labs',
+      'Offensive Security',
+      'Certification',
+      'Networking',
+      'Linux'
+    ];
 
     return Scaffold(
       backgroundColor: AppColors.bgPrimary,
@@ -166,7 +184,8 @@ class ResourcesScreen extends ConsumerWidget {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -176,7 +195,10 @@ class ResourcesScreen extends ConsumerWidget {
                         children: [
                           Text(
                             'CURATED ARSENAL',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
                                   color: AppColors.cyberCyan,
                                   letterSpacing: 2.0,
                                   fontWeight: FontWeight.bold,
@@ -184,7 +206,10 @@ class ResourcesScreen extends ConsumerWidget {
                           ),
                           Text(
                             'Resources & Field Manuals',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -198,24 +223,31 @@ class ResourcesScreen extends ConsumerWidget {
 
               // Search Box
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: TextField(
-                  onChanged: (val) => ref.read(resourcesSearchQueryProvider.notifier).state = val,
+                  onChanged: (val) => ref
+                      .read(resourcesSearchQueryProvider.notifier)
+                      .state = val,
                   style: const TextStyle(color: AppColors.textPrimary),
                   decoration: InputDecoration(
                     hintText: 'Search labs, walkthroughs, docs...',
                     hintStyle: const TextStyle(color: AppColors.textMuted),
-                    prefixIcon: const Icon(Icons.search, color: AppColors.cyberCyan),
+                    prefixIcon:
+                        const Icon(Icons.search, color: AppColors.cyberCyan),
                     filled: true,
                     fillColor: AppColors.bgCard,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: AppColors.borderColor),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderColor),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: AppColors.borderColor),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderColor),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -242,14 +274,21 @@ class ResourcesScreen extends ConsumerWidget {
                       selectedColor: AppColors.cyberCyan.withValues(alpha: 0.2),
                       backgroundColor: AppColors.bgCard,
                       labelStyle: TextStyle(
-                        color: isSelected ? AppColors.cyberCyan : AppColors.textSecondary,
-                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                        color: isSelected
+                            ? AppColors.cyberCyan
+                            : AppColors.textSecondary,
+                        fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal,
                         fontSize: 12,
                       ),
                       side: BorderSide(
-                        color: isSelected ? AppColors.cyberCyan : AppColors.borderColor,
+                        color: isSelected
+                            ? AppColors.cyberCyan
+                            : AppColors.borderColor,
                       ),
-                      onSelected: (_) => ref.read(resourcesFilterProvider.notifier).state = cat,
+                      onSelected: (_) => ref
+                          .read(resourcesFilterProvider.notifier)
+                          .state = cat,
                     );
                   },
                 ),
@@ -261,18 +300,30 @@ class ResourcesScreen extends ConsumerWidget {
               Expanded(
                 child: resourcesAsync.when(
                   loading: () => const Center(
-                    child: CircularProgressIndicator(color: AppColors.cyberCyan),
+                    child:
+                        CircularProgressIndicator(color: AppColors.cyberCyan),
                   ),
                   error: (err, _) => Center(
-                    child: Text('Error loading resources: $err', style: const TextStyle(color: AppColors.neonRed)),
+                    child: Text('Error loading resources: $err',
+                        style: const TextStyle(color: AppColors.neonRed)),
                   ),
                   data: (items) {
                     final filtered = items.where((res) {
-                      final matchesFilter = selectedFilter == 'All' || res['category'] == selectedFilter;
+                      final matchesFilter = selectedFilter == 'All' ||
+                          res['category'] == selectedFilter;
                       final matchesSearch = searchQuery.isEmpty ||
-                          (res['title'] ?? '').toString().toLowerCase().contains(searchQuery.toLowerCase()) ||
-                          (res['description'] ?? '').toString().toLowerCase().contains(searchQuery.toLowerCase()) ||
-                          (res['platform'] ?? '').toString().toLowerCase().contains(searchQuery.toLowerCase());
+                          (res['title'] ?? '')
+                              .toString()
+                              .toLowerCase()
+                              .contains(searchQuery.toLowerCase()) ||
+                          (res['description'] ?? '')
+                              .toString()
+                              .toLowerCase()
+                              .contains(searchQuery.toLowerCase()) ||
+                          (res['platform'] ?? '')
+                              .toString()
+                              .toLowerCase()
+                              .contains(searchQuery.toLowerCase());
                       return matchesFilter && matchesSearch;
                     }).toList();
 
@@ -281,16 +332,22 @@ class ResourcesScreen extends ConsumerWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.filter_list_off, size: 48, color: AppColors.textMuted),
+                            const Icon(Icons.filter_list_off,
+                                size: 48, color: AppColors.textMuted),
                             const SizedBox(height: 12),
-                            Text('No resources match your search', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary)),
+                            Text('No resources match your search',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(color: AppColors.textSecondary)),
                           ],
                         ),
                       );
                     }
 
                     return ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       itemCount: filtered.length,
                       separatorBuilder: (_, __) => const SizedBox(height: 12),
                       itemBuilder: (context, index) {
@@ -314,14 +371,18 @@ class ResourcesScreen extends ConsumerWidget {
                                     decoration: BoxDecoration(
                                       color: catColor.withValues(alpha: 0.15),
                                       borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(color: catColor.withValues(alpha: 0.4)),
+                                      border: Border.all(
+                                          color:
+                                              catColor.withValues(alpha: 0.4)),
                                     ),
-                                    child: Icon(_getIconData(res['icon']), color: catColor, size: 20),
+                                    child: Icon(_getIconData(res['icon']),
+                                        color: catColor, size: 20),
                                   ),
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           res['platform'] ?? 'Web Resource',
@@ -348,22 +409,30 @@ class ResourcesScreen extends ConsumerWidget {
                               const SizedBox(height: 10),
                               Text(
                                 res['description'] ?? '',
-                                style: const TextStyle(color: AppColors.textSecondary, fontSize: 13, height: 1.4),
+                                style: const TextStyle(
+                                    color: AppColors.textSecondary,
+                                    fontSize: 13,
+                                    height: 1.4),
                               ),
                               const SizedBox(height: 14),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 4),
                                     decoration: BoxDecoration(
                                       color: AppColors.bgSurface,
                                       borderRadius: BorderRadius.circular(6),
-                                      border: Border.all(color: AppColors.borderColor),
+                                      border: Border.all(
+                                          color: AppColors.borderColor),
                                     ),
                                     child: Text(
                                       res['category'] ?? 'General',
-                                      style: const TextStyle(color: AppColors.textMuted, fontSize: 11),
+                                      style: const TextStyle(
+                                          color: AppColors.textMuted,
+                                          fontSize: 11),
                                     ),
                                   ),
                                   ElevatedButton.icon(
@@ -372,25 +441,35 @@ class ResourcesScreen extends ConsumerWidget {
                                       if (urlStr.isNotEmpty) {
                                         final uri = Uri.parse(urlStr);
                                         if (await canLaunchUrl(uri)) {
-                                          await launchUrl(uri, mode: LaunchMode.externalApplication);
+                                          await launchUrl(uri,
+                                              mode: LaunchMode
+                                                  .externalApplication);
                                         }
                                       }
                                     },
-                                    icon: const Icon(Icons.open_in_new, size: 14),
-                                    label: const Text('Launch Resource', style: TextStyle(fontSize: 12)),
+                                    icon:
+                                        const Icon(Icons.open_in_new, size: 14),
+                                    label: const Text('Launch Resource',
+                                        style: TextStyle(fontSize: 12)),
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: catColor.withValues(alpha: 0.15),
+                                      backgroundColor:
+                                          catColor.withValues(alpha: 0.15),
                                       foregroundColor: catColor,
                                       elevation: 0,
-                                      side: BorderSide(color: catColor.withValues(alpha: 0.4)),
-                                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                      side: BorderSide(
+                                          color:
+                                              catColor.withValues(alpha: 0.4)),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 14, vertical: 8),
                                     ),
                                   ),
                                 ],
                               ),
                             ],
                           ),
-                        ).animate().fadeIn(duration: 250.ms, delay: (index * 40).ms);
+                        )
+                            .animate()
+                            .fadeIn(duration: 250.ms, delay: (index * 40).ms);
                       },
                     );
                   },

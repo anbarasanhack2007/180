@@ -45,9 +45,8 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 500));
 
     // Update the full_name
-    await SupabaseService.profiles
-        .update({'full_name': fullName, 'email': email})
-        .eq('id', response.user!.id);
+    await SupabaseService.profiles.update(
+        {'full_name': fullName, 'email': email}).eq('id', response.user!.id);
 
     return await getCurrentProfile();
   }
@@ -80,10 +79,8 @@ class AuthRepositoryImpl implements AuthRepository {
     final userId = SupabaseService.currentUserId;
     if (userId == null) return null;
 
-    final data = await SupabaseService.profiles
-        .select()
-        .eq('id', userId)
-        .maybeSingle();
+    final data =
+        await SupabaseService.profiles.select().eq('id', userId).maybeSingle();
 
     if (data == null) return null;
     return ProfileModel.fromJson(data);
@@ -124,8 +121,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Stream<AuthState> get authStateChanges =>
-      SupabaseService.authStateChanges;
+  Stream<AuthState> get authStateChanges => SupabaseService.authStateChanges;
 
   @override
   bool get isSignedIn => SupabaseService.isSignedIn;

@@ -16,18 +16,23 @@ class MainShell extends ConsumerWidget {
     final isAdmin = ref.watch(isAdminProvider);
     final location = GoRouterState.of(context).matchedLocation;
 
-    int _currentIndex = 0;
-    if (location.startsWith('/roadmap')) _currentIndex = 1;
-    else if (location.startsWith('/labs')) _currentIndex = 2;
-    else if (location.startsWith('/projects')) _currentIndex = 3;
-    else if (location.startsWith('/profile')) _currentIndex = 4;
+    int currentIndex = 0;
+    if (location.startsWith('/roadmap')) {
+      currentIndex = 1;
+    } else if (location.startsWith('/labs')) {
+      currentIndex = 2;
+    } else if (location.startsWith('/projects')) {
+      currentIndex = 3;
+    } else if (location.startsWith('/profile')) {
+      currentIndex = 4;
+    }
 
     return Scaffold(
       backgroundColor: AppColors.bgPrimary,
       drawer: _buildDrawer(context, ref, profile?.fullName ?? 'Defender',
           profile?.email ?? '', isAdmin),
       body: child,
-      bottomNavigationBar: _buildBottomNav(context, _currentIndex),
+      bottomNavigationBar: _buildBottomNav(context, currentIndex),
     );
   }
 
@@ -101,8 +106,8 @@ class MainShell extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: const BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(color: AppColors.borderColor)),
+                  border:
+                      Border(bottom: BorderSide(color: AppColors.borderColor)),
                 ),
                 child: Row(
                   children: [
@@ -112,11 +117,11 @@ class MainShell extends ConsumerWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: AppColors.cyberCyan.withOpacity(0.5),
+                            color: AppColors.cyberCyan.withValues(alpha: 0.5),
                             width: 2),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.cyberCyan.withOpacity(0.15),
+                            color: AppColors.cyberCyan.withValues(alpha: 0.15),
                             blurRadius: 10,
                           ),
                         ],
@@ -163,16 +168,16 @@ class MainShell extends ConsumerWidget {
                   children: [
                     _drawerItem(context, Icons.dashboard_outlined, 'Dashboard',
                         AppRoutes.home),
-                    _drawerItem(context, Icons.today_outlined, "Today's Mission",
-                        '${AppRoutes.home}/mission/1'),
+                    _drawerItem(context, Icons.today_outlined,
+                        "Today's Mission", '${AppRoutes.home}/mission/1'),
                     _drawerItem(context, Icons.map_outlined, '180-Day Roadmap',
                         AppRoutes.roadmap),
                     _drawerItem(context, Icons.science_outlined, 'Labs',
                         AppRoutes.labs),
                     _drawerItem(context, Icons.folder_outlined, 'Projects',
                         AppRoutes.projects),
-                    _drawerItem(context, Icons.quiz_outlined, 'Tests',
-                        AppRoutes.tests),
+                    _drawerItem(
+                        context, Icons.quiz_outlined, 'Tests', AppRoutes.tests),
                     _drawerItem(context, Icons.psychology_outlined, 'Skills',
                         AppRoutes.skills),
                     _drawerItem(context, Icons.note_alt_outlined, 'Notes',
@@ -189,8 +194,8 @@ class MainShell extends ConsumerWidget {
                         'Interview Prep', AppRoutes.interview),
                     _drawerItem(context, Icons.analytics_outlined, 'Analytics',
                         AppRoutes.analytics),
-                    _drawerItem(context, Icons.search, 'Search',
-                        AppRoutes.search),
+                    _drawerItem(
+                        context, Icons.search, 'Search', AppRoutes.search),
                     _drawerItem(context, Icons.settings_outlined, 'Settings',
                         AppRoutes.settings),
                     const Divider(color: AppColors.borderColor),
@@ -235,17 +240,15 @@ class MainShell extends ConsumerWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: isActive
-            ? AppColors.cyberCyan
-            : (color ?? AppColors.textSecondary),
+        color:
+            isActive ? AppColors.cyberCyan : (color ?? AppColors.textSecondary),
         size: 20,
       ),
       title: Text(
         label,
         style: TextStyle(
-          color: isActive
-              ? AppColors.cyberCyan
-              : (color ?? AppColors.textPrimary),
+          color:
+              isActive ? AppColors.cyberCyan : (color ?? AppColors.textPrimary),
           fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
           fontSize: 14,
         ),

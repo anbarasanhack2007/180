@@ -14,7 +14,8 @@ final allProjectsProvider =
 });
 
 final userProjectProgressProvider =
-    FutureProvider.family<Map<String, dynamic>?, String>((ref, projectId) async {
+    FutureProvider.family<Map<String, dynamic>?, String>(
+        (ref, projectId) async {
   final userId = SupabaseService.currentUserId;
   if (userId == null) return null;
   try {

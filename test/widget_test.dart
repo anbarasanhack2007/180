@@ -53,7 +53,8 @@ void main() {
       expect(p3.level, 12);
     });
 
-    testWidgets('CyberButton renders label and triggers tap', (WidgetTester tester) async {
+    testWidgets('CyberButton renders label and triggers tap',
+        (WidgetTester tester) async {
       bool tapped = false;
 
       await tester.pumpWidget(

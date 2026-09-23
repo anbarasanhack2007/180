@@ -19,7 +19,8 @@ class PortfolioScreen extends ConsumerWidget {
     final totalXp = ref.watch(totalXpProvider).valueOrNull ?? 350;
 
     final fullName = profile?.fullName ?? 'Cyber Operator';
-    final targetRole = profile?.cybersecurityLevel ?? 'SOC Analyst & Incident Responder';
+    final targetRole =
+        profile?.cybersecurityLevel ?? 'SOC Analyst & Incident Responder';
     final xp = totalXp;
     final completedDays = progress?.completedDays ?? 12;
     final streakDays = streak?.currentStreak ?? 5;
@@ -42,23 +43,26 @@ class PortfolioScreen extends ConsumerWidget {
                       children: [
                         Text(
                           'OPERATOR DOSSIER',
-                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                color: AppColors.cyberCyan,
-                                letterSpacing: 2.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: AppColors.cyberCyan,
+                                    letterSpacing: 2.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         Text(
                           'Cyber Portfolio',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                color: AppColors.textPrimary,
-                                fontWeight: FontWeight.w700,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: AppColors.textPrimary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                         ),
                       ],
                     ),
                     IconButton(
-                      icon: const Icon(Icons.settings_outlined, color: AppColors.textSecondary),
+                      icon: const Icon(Icons.settings_outlined,
+                          color: AppColors.textSecondary),
                       onPressed: () => context.push(AppRoutes.settings),
                     ),
                   ],
@@ -79,7 +83,8 @@ class PortfolioScreen extends ConsumerWidget {
                       end: Alignment.bottomRight,
                     ),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: AppColors.cyberCyan.withValues(alpha: 0.4)),
+                    border: Border.all(
+                        color: AppColors.cyberCyan.withValues(alpha: 0.4)),
                   ),
                   child: Column(
                     children: [
@@ -87,8 +92,10 @@ class PortfolioScreen extends ConsumerWidget {
                         children: [
                           CircleAvatar(
                             radius: 36,
-                            backgroundColor: AppColors.cyberCyan.withValues(alpha: 0.2),
-                            child: const Icon(Icons.shield_outlined, size: 40, color: AppColors.cyberCyan),
+                            backgroundColor:
+                                AppColors.cyberCyan.withValues(alpha: 0.2),
+                            child: const Icon(Icons.shield_outlined,
+                                size: 40, color: AppColors.cyberCyan),
                           ),
                           const SizedBox(width: 16),
                           Expanded(
@@ -108,11 +115,14 @@ class PortfolioScreen extends ConsumerWidget {
                                       ),
                                     ),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 2),
                                       decoration: BoxDecoration(
-                                        color: AppColors.matrixGreen.withValues(alpha: 0.2),
+                                        color: AppColors.matrixGreen
+                                            .withValues(alpha: 0.2),
                                         borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(color: AppColors.matrixGreen),
+                                        border: Border.all(
+                                            color: AppColors.matrixGreen),
                                       ),
                                       child: const Text(
                                         'ACTIVE',
@@ -137,7 +147,8 @@ class PortfolioScreen extends ConsumerWidget {
                                 const SizedBox(height: 6),
                                 Text(
                                   'B.Tech 2nd Year | 180-Day Sprint Cadet',
-                                  style: TextStyle(color: AppColors.textMuted, fontSize: 12),
+                                  style: TextStyle(
+                                      color: AppColors.textMuted, fontSize: 12),
                                 ),
                               ],
                             ),
@@ -152,8 +163,11 @@ class PortfolioScreen extends ConsumerWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          _buildStatBadge(context, '$completedDays/180', 'Days Sprint'),
-                          _buildStatBadge(context, '$streakDays Days', 'Fire Streak', isFire: true),
+                          _buildStatBadge(
+                              context, '$completedDays/180', 'Days Sprint'),
+                          _buildStatBadge(
+                              context, '$streakDays Days', 'Fire Streak',
+                              isFire: true),
                           _buildStatBadge(context, '$xp XP', 'Reputation'),
                         ],
                       ),
@@ -244,7 +258,9 @@ class PortfolioScreen extends ConsumerWidget {
                     ),
                     TextButton(
                       onPressed: () => context.push(AppRoutes.projects),
-                      child: const Text('View All (6)', style: TextStyle(color: AppColors.cyberCyan, fontSize: 12)),
+                      child: const Text('View All (6)',
+                          style: TextStyle(
+                              color: AppColors.cyberCyan, fontSize: 12)),
                     ),
                   ],
                 ),
@@ -279,7 +295,8 @@ class PortfolioScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildStatBadge(BuildContext context, String value, String label, {bool isFire = false}) {
+  Widget _buildStatBadge(BuildContext context, String value, String label,
+      {bool isFire = false}) {
     return Column(
       children: [
         Text(
@@ -331,7 +348,10 @@ class PortfolioScreen extends ConsumerWidget {
             const SizedBox(height: 12),
             Text(
               title,
-              style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 14),
+              style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
             ),
             const SizedBox(height: 2),
             Text(
@@ -369,10 +389,15 @@ class PortfolioScreen extends ConsumerWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600, fontSize: 14),
+                  style: const TextStyle(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14),
                 ),
                 const SizedBox(height: 4),
-                Text(tech, style: const TextStyle(color: AppColors.textMuted, fontSize: 11)),
+                Text(tech,
+                    style: const TextStyle(
+                        color: AppColors.textMuted, fontSize: 11)),
               ],
             ),
           ),
@@ -386,7 +411,10 @@ class PortfolioScreen extends ConsumerWidget {
             ),
             child: Text(
               status,
-              style: TextStyle(color: statusColor, fontSize: 10, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: statusColor,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ],

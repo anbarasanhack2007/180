@@ -8,7 +8,8 @@ import '../../../core/constants/app_routes.dart';
 import '../../../core/widgets/cyber_background.dart';
 import '../../../services/supabase_service.dart';
 
-final bookmarksListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async {
+final bookmarksListProvider =
+    FutureProvider<List<Map<String, dynamic>>>((ref) async {
   try {
     final userId = SupabaseService.currentUserId;
     if (userId != null) {
@@ -28,7 +29,8 @@ final bookmarksListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) a
       'item_type': 'mission',
       'day_number': 12,
       'notes': 'Revisit before Network+ / Sec+ exam',
-      'created_at': DateTime.now().subtract(const Duration(days: 2)).toIso8601String(),
+      'created_at':
+          DateTime.now().subtract(const Duration(days: 2)).toIso8601String(),
     },
     {
       'id': 'bm-2',
@@ -36,7 +38,8 @@ final bookmarksListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) a
       'item_type': 'resource',
       'url': 'https://portswigger.net/web-security/ssrf',
       'notes': 'Great explanation of cloud metadata exploitation',
-      'created_at': DateTime.now().subtract(const Duration(days: 4)).toIso8601String(),
+      'created_at':
+          DateTime.now().subtract(const Duration(days: 4)).toIso8601String(),
     },
     {
       'id': 'bm-3',
@@ -44,7 +47,8 @@ final bookmarksListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) a
       'item_type': 'lab',
       'url': 'https://tryhackme.com/room/linprivesc',
       'notes': 'Practice SUID and cron job exploitation',
-      'created_at': DateTime.now().subtract(const Duration(days: 6)).toIso8601String(),
+      'created_at':
+          DateTime.now().subtract(const Duration(days: 6)).toIso8601String(),
     },
   ];
 });
@@ -77,7 +81,8 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -87,7 +92,10 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                         children: [
                           Text(
                             'QUICK VAULT',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
                                   color: AppColors.cyberCyan,
                                   letterSpacing: 2.0,
                                   fontWeight: FontWeight.bold,
@@ -95,7 +103,10 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                           ),
                           Text(
                             'Saved Bookmarks',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -104,7 +115,8 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.refresh, color: AppColors.textSecondary),
+                      icon: const Icon(Icons.refresh,
+                          color: AppColors.textSecondary),
                       onPressed: () => ref.invalidate(bookmarksListProvider),
                     ),
                   ],
@@ -128,11 +140,16 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                       selectedColor: AppColors.cyberCyan.withValues(alpha: 0.2),
                       backgroundColor: AppColors.bgCard,
                       labelStyle: TextStyle(
-                        color: isSelected ? AppColors.cyberCyan : AppColors.textSecondary,
-                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                        color: isSelected
+                            ? AppColors.cyberCyan
+                            : AppColors.textSecondary,
+                        fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal,
                       ),
                       side: BorderSide(
-                        color: isSelected ? AppColors.cyberCyan : AppColors.borderColor,
+                        color: isSelected
+                            ? AppColors.cyberCyan
+                            : AppColors.borderColor,
                       ),
                       onSelected: (_) => setState(() => _selectedFilter = tab),
                     );
@@ -146,17 +163,27 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
               Expanded(
                 child: bookmarksAsync.when(
                   loading: () => const Center(
-                    child: CircularProgressIndicator(color: AppColors.cyberCyan),
+                    child:
+                        CircularProgressIndicator(color: AppColors.cyberCyan),
                   ),
                   error: (err, _) => Center(
-                    child: Text('Error: $err', style: const TextStyle(color: AppColors.neonRed)),
+                    child: Text('Error: $err',
+                        style: const TextStyle(color: AppColors.neonRed)),
                   ),
                   data: (items) {
                     final filtered = items.where((bm) {
-                      if (_selectedFilter == 'All') return true;
-                      if (_selectedFilter == 'Missions') return bm['item_type'] == 'mission';
-                      if (_selectedFilter == 'Resources') return bm['item_type'] == 'resource';
-                      if (_selectedFilter == 'Labs') return bm['item_type'] == 'lab';
+                      if (_selectedFilter == 'All') {
+                        return true;
+                      }
+                      if (_selectedFilter == 'Missions') {
+                        return bm['item_type'] == 'mission';
+                      }
+                      if (_selectedFilter == 'Resources') {
+                        return bm['item_type'] == 'resource';
+                      }
+                      if (_selectedFilter == 'Labs') {
+                        return bm['item_type'] == 'lab';
+                      }
                       return true;
                     }).toList();
 
@@ -165,18 +192,28 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.bookmark_border, size: 56, color: AppColors.textMuted),
+                            const Icon(Icons.bookmark_border,
+                                size: 56, color: AppColors.textMuted),
                             const SizedBox(height: 12),
-                            Text('No bookmarks yet', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary)),
+                            Text('No bookmarks yet',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(color: AppColors.textSecondary)),
                             const SizedBox(height: 4),
-                            Text('Bookmark missions and labs to revisit later.', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.textMuted)),
+                            Text('Bookmark missions and labs to revisit later.',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(color: AppColors.textMuted)),
                           ],
                         ),
                       );
                     }
 
                     return ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       itemCount: filtered.length,
                       separatorBuilder: (_, __) => const SizedBox(height: 12),
                       itemBuilder: (context, index) {
@@ -218,7 +255,8 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                                 decoration: BoxDecoration(
                                   color: typeColor.withValues(alpha: 0.15),
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: typeColor.withValues(alpha: 0.4)),
+                                  border: Border.all(
+                                      color: typeColor.withValues(alpha: 0.4)),
                                 ),
                                 child: Icon(icon, color: typeColor, size: 20),
                               ),
@@ -245,32 +283,40 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    if (bm['notes'] != null && bm['notes'].toString().isNotEmpty) ...[
+                                    if (bm['notes'] != null &&
+                                        bm['notes'].toString().isNotEmpty) ...[
                                       const SizedBox(height: 6),
                                       Text(
                                         bm['notes'],
-                                        style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                                        style: const TextStyle(
+                                            color: AppColors.textSecondary,
+                                            fontSize: 13),
                                       ),
                                     ],
                                   ],
                                 ),
                               ),
                               IconButton(
-                                icon: const Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.cyberCyan),
+                                icon: const Icon(Icons.arrow_forward_ios,
+                                    size: 16, color: AppColors.cyberCyan),
                                 onPressed: () async {
                                   if (bm['day_number'] != null) {
-                                    context.push('${AppRoutes.home}/mission/${bm['day_number']}');
+                                    context.push(
+                                        '${AppRoutes.home}/mission/${bm['day_number']}');
                                   } else if (bm['url'] != null) {
                                     final uri = Uri.parse(bm['url']);
                                     if (await canLaunchUrl(uri)) {
-                                      await launchUrl(uri, mode: LaunchMode.externalApplication);
+                                      await launchUrl(uri,
+                                          mode: LaunchMode.externalApplication);
                                     }
                                   }
                                 },
                               ),
                             ],
                           ),
-                        ).animate().fadeIn(duration: 200.ms, delay: (index * 30).ms);
+                        )
+                            .animate()
+                            .fadeIn(duration: 200.ms, delay: (index * 30).ms);
                       },
                     );
                   },

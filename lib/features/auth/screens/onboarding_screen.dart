@@ -8,7 +8,6 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/cyber_button.dart';
 import '../../../core/widgets/cyber_background.dart';
 import '../../../core/widgets/cyber_text_field.dart';
-import '../../../domain/entities/user_profile.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -49,8 +48,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Future<void> _complete() async {
     setState(() => _isLoading = true);
     try {
-      final current =
-          ref.read(currentProfileProvider).valueOrNull;
+      final current = ref.read(currentProfileProvider).valueOrNull;
       if (current == null) return;
 
       final updated = current.copyWith(
@@ -62,9 +60,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         updatedAt: DateTime.now(),
       );
 
-      await ref
-          .read(currentProfileProvider.notifier)
-          .updateProfile(updated);
+      await ref.read(currentProfileProvider.notifier).updateProfile(updated);
 
       if (mounted) context.go(AppRoutes.home);
     } catch (e) {
@@ -102,7 +98,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             children: [
               // Progress indicator
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                 child: Row(
                   children: [
                     const Icon(Icons.shield_outlined,
@@ -152,8 +149,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 child: PageView(
                   controller: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
-                  onPageChanged: (page) =>
-                      setState(() => _currentPage = page),
+                  onPageChanged: (page) => setState(() => _currentPage = page),
                   children: [
                     _buildPage1(),
                     _buildPage2(),
@@ -168,7 +164,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                 child: CyberButton(
                   label: _currentPage < 2 ? 'CONTINUE' : 'START JOURNEY 🚀',
-                  icon: _currentPage < 2 ? Icons.arrow_forward : Icons.rocket_launch,
+                  icon: _currentPage < 2
+                      ? Icons.arrow_forward
+                      : Icons.rocket_launch,
                   isLoading: _isLoading,
                   onPressed: _next,
                 ),
@@ -232,7 +230,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 onSelected: (selected) {
                   if (selected) setState(() => _studyYear = year);
                 },
-                selectedColor: AppColors.cyberCyan.withOpacity(0.2),
+                selectedColor: AppColors.cyberCyan.withValues(alpha: 0.2),
                 labelStyle: TextStyle(
                   color: _studyYear == year
                       ? AppColors.cyberCyan
@@ -270,13 +268,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: selected
-                      ? AppColors.cyberCyan.withOpacity(0.1)
+                      ? AppColors.cyberCyan.withValues(alpha: 0.1)
                       : AppColors.bgCard,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: selected
-                        ? AppColors.cyberCyan
-                        : AppColors.borderColor,
+                    color:
+                        selected ? AppColors.cyberCyan : AppColors.borderColor,
                     width: selected ? 1.5 : 1,
                   ),
                 ),
@@ -286,23 +283,18 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       selected
                           ? Icons.radio_button_checked
                           : Icons.radio_button_unchecked,
-                      color: selected
-                          ? AppColors.cyberCyan
-                          : AppColors.textHint,
+                      color:
+                          selected ? AppColors.cyberCyan : AppColors.textHint,
                     ),
                     const SizedBox(width: 12),
                     Text(
                       level,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: selected
                                 ? AppColors.cyberCyan
                                 : AppColors.textPrimary,
-                            fontWeight: selected
-                                ? FontWeight.w600
-                                : FontWeight.w400,
+                            fontWeight:
+                                selected ? FontWeight.w600 : FontWeight.w400,
                           ),
                     ),
                   ],
@@ -352,13 +344,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: selected
-                      ? AppColors.cyberCyan.withOpacity(0.1)
+                      ? AppColors.cyberCyan.withValues(alpha: 0.1)
                       : AppColors.bgCard,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: selected
-                        ? AppColors.cyberCyan
-                        : AppColors.borderColor,
+                    color:
+                        selected ? AppColors.cyberCyan : AppColors.borderColor,
                     width: selected ? 1.5 : 1,
                   ),
                 ),
@@ -366,23 +357,18 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   children: [
                     Icon(
                       Icons.timer_outlined,
-                      color: selected
-                          ? AppColors.cyberCyan
-                          : AppColors.textHint,
+                      color:
+                          selected ? AppColors.cyberCyan : AppColors.textHint,
                     ),
                     const SizedBox(width: 12),
                     Text(
                       label,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: selected
                                 ? AppColors.cyberCyan
                                 : AppColors.textPrimary,
-                            fontWeight: selected
-                                ? FontWeight.w600
-                                : FontWeight.w400,
+                            fontWeight:
+                                selected ? FontWeight.w600 : FontWeight.w400,
                           ),
                     ),
                     if (minutes == 120) ...[
@@ -391,7 +377,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: AppColors.cyberGreen.withOpacity(0.15),
+                          color: AppColors.cyberGreen.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(

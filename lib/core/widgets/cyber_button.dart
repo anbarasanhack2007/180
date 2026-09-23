@@ -91,7 +91,8 @@ class CyberOutlinedButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           foregroundColor: borderColor ?? AppColors.cyberCyan,
-          side: BorderSide(color: borderColor ?? AppColors.cyberCyan, width: 1.5),
+          side:
+              BorderSide(color: borderColor ?? AppColors.cyberCyan, width: 1.5),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

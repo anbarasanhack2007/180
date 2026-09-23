@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../app/theme/app_colors.dart';
-import '../../../core/widgets/cyber_background.dart';
 
 class StatGrid extends StatelessWidget {
   final int completedDays;
@@ -80,7 +79,7 @@ class StatCard extends StatelessWidget {
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: color.withOpacity(0.12),
+              color: color.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(icon, color: color, size: 18),

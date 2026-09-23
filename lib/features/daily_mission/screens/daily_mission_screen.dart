@@ -7,7 +7,6 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/widgets/cyber_background.dart';
 import '../../../core/widgets/cyber_button.dart';
-import '../../../data/repositories/curriculum_repository.dart';
 import '../../../data/repositories/progress_repository.dart';
 import '../../../data/models/curriculum_models.dart';
 import '../../../domain/entities/daily_task.dart';
@@ -20,8 +19,7 @@ class DailyMissionScreen extends ConsumerStatefulWidget {
   const DailyMissionScreen({super.key, required this.dayNumber});
 
   @override
-  ConsumerState<DailyMissionScreen> createState() =>
-      _DailyMissionScreenState();
+  ConsumerState<DailyMissionScreen> createState() => _DailyMissionScreenState();
 }
 
 class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
@@ -46,7 +44,8 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.wifi_off, color: AppColors.textHint, size: 56),
+                  const Icon(Icons.wifi_off,
+                      color: AppColors.textHint, size: 56),
                   const SizedBox(height: 16),
                   Text(
                     'Could not load Day ${widget.dayNumber}',
@@ -65,8 +64,8 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
                   ),
                   const SizedBox(height: 24),
                   OutlinedButton(
-                    onPressed: () => ref.refresh(
-                        dailyTaskDetailProvider(widget.dayNumber)),
+                    onPressed: () =>
+                        ref.refresh(dailyTaskDetailProvider(widget.dayNumber)),
                     child: const Text('Retry'),
                   ),
                   TextButton(
@@ -85,8 +84,8 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
   Widget _buildContent(
       BuildContext context, DailyTaskModel task, String? userId) {
     final monthIndex = task.monthNumber - 1;
-    final color = AppColors.monthColors[
-        monthIndex.clamp(0, AppColors.monthColors.length - 1)];
+    final color = AppColors
+        .monthColors[monthIndex.clamp(0, AppColors.monthColors.length - 1)];
 
     return CustomScrollView(
       slivers: [
@@ -110,7 +109,8 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
           centerTitle: true,
           actions: [
             IconButton(
-              icon: const Icon(Icons.timer_outlined, color: AppColors.textPrimary),
+              icon: const Icon(Icons.timer_outlined,
+                  color: AppColors.textPrimary),
               onPressed: () => setState(() => _showTimer = !_showTimer),
               tooltip: 'Study Timer',
             ),
@@ -118,13 +118,12 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
               IconButton(
                 icon: const Icon(Icons.note_add_outlined,
                     color: AppColors.textPrimary),
-                onPressed: () => context.push('/notes/create',
-                    extra: {'dayTaskId': task.id}),
+                onPressed: () => context
+                    .push('/notes/create', extra: {'dayTaskId': task.id}),
                 tooltip: 'Add Note',
               ),
           ],
         ),
-
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           sliver: SliverList(
@@ -155,9 +154,10 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
 
               // Topic
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Row(
@@ -191,7 +191,8 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
                         ),
                   ),
                   const SizedBox(width: 16),
-                  const Icon(Icons.checklist, color: AppColors.textHint, size: 16),
+                  const Icon(Icons.checklist,
+                      color: AppColors.textHint, size: 16),
                   const SizedBox(width: 4),
                   Text(
                     '${task.checklistItems.length} tasks',
@@ -269,14 +270,15 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppColors.cyberOrange.withOpacity(0.06),
+                  color: AppColors.cyberOrange.withValues(alpha: 0.06),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                      color: AppColors.cyberOrange.withOpacity(0.2)),
+                      color: AppColors.cyberOrange.withValues(alpha: 0.2)),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.security, color: AppColors.cyberOrange, size: 16),
+                    const Icon(Icons.security,
+                        color: AppColors.cyberOrange, size: 16),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
@@ -292,8 +294,7 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
               const SizedBox(height: 24),
 
               // Mark complete button
-              if (userId != null)
-                _CompletionButton(task: task, userId: userId),
+              if (userId != null) _CompletionButton(task: task, userId: userId),
               const SizedBox(height: 32),
             ]),
           ),
@@ -306,7 +307,7 @@ class _DailyMissionScreenState extends ConsumerState<DailyMissionScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
@@ -394,7 +395,7 @@ class _ResourceTile extends StatelessWidget {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: platformColor.withOpacity(0.12),
+          color: platformColor.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(platformIcon, color: platformColor, size: 18),
@@ -411,7 +412,8 @@ class _ResourceTile extends StatelessWidget {
         resource.platform,
         style: const TextStyle(color: AppColors.textHint, fontSize: 11),
       ),
-      trailing: const Icon(Icons.open_in_new, color: AppColors.textHint, size: 16),
+      trailing:
+          const Icon(Icons.open_in_new, color: AppColors.textHint, size: 16),
       onTap: () async {
         final url = resource.effectiveUrl;
         if (url.isNotEmpty) {
@@ -493,8 +495,7 @@ class _ChecklistSection extends ConsumerWidget {
                           ? AppColors.textHint
                           : AppColors.textPrimary,
                       fontSize: 13,
-                      decoration:
-                          isChecked ? TextDecoration.lineThrough : null,
+                      decoration: isChecked ? TextDecoration.lineThrough : null,
                     ),
                   ),
                   value: isChecked,
@@ -514,8 +515,8 @@ class _ChecklistSection extends ConsumerWidget {
               error: (_, __) => ListTile(
                 dense: true,
                 title: Text(item.title,
-                    style:
-                        const TextStyle(color: AppColors.textPrimary, fontSize: 13)),
+                    style: const TextStyle(
+                        color: AppColors.textPrimary, fontSize: 13)),
               ),
             );
           }),
@@ -544,10 +545,10 @@ class _CompletionButton extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.cyberGreen.withOpacity(0.1),
+                  color: AppColors.cyberGreen.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                      color: AppColors.cyberGreen.withOpacity(0.3)),
+                      color: AppColors.cyberGreen.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

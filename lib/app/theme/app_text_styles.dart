@@ -101,25 +101,25 @@ class AppTextStyles {
 
   // Terminal-style mono font for code snippets
   static TextStyle get mono => GoogleFonts.firaCode(
-    fontSize: 13,
-    fontWeight: FontWeight.w400,
-    color: const Color(0xFF00E5FF),
-    letterSpacing: 0.5,
-  );
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: const Color(0xFF00E5FF),
+        letterSpacing: 0.5,
+      );
 
   // Cyber glow heading
   static TextStyle get cyberHeading => GoogleFonts.spaceGrotesk(
-    fontSize: 28,
-    fontWeight: FontWeight.w800,
-    letterSpacing: -0.5,
-    color: const Color(0xFF00E5FF),
-  );
+        fontSize: 28,
+        fontWeight: FontWeight.w800,
+        letterSpacing: -0.5,
+        color: const Color(0xFF00E5FF),
+      );
 
   // XP number
   static TextStyle get xpNumber => GoogleFonts.spaceGrotesk(
-    fontSize: 20,
-    fontWeight: FontWeight.w800,
-    letterSpacing: 1,
-    color: const Color(0xFFFFD740),
-  );
+        fontSize: 20,
+        fontWeight: FontWeight.w800,
+        letterSpacing: 1,
+        color: const Color(0xFFFFD740),
+      );
 }

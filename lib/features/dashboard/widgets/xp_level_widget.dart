@@ -32,14 +32,14 @@ class XpLevelWidget extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.xpGold.withOpacity(0.08),
+            AppColors.xpGold.withValues(alpha: 0.08),
             AppColors.bgCard,
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.xpGold.withOpacity(0.2)),
+        border: Border.all(color: AppColors.xpGold.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

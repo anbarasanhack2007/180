@@ -6,8 +6,8 @@ import '../../../core/widgets/cyber_background.dart';
 import '../../../data/repositories/curriculum_repository.dart';
 import '../../../data/models/curriculum_models.dart';
 
-final monthDetailProvider =
-    FutureProvider.family<(MonthModel, List<WeekModel>, List<DailyTaskModel>), String>(
+final monthDetailProvider = FutureProvider.family<
+    (MonthModel, List<WeekModel>, List<DailyTaskModel>), String>(
   (ref, monthId) async {
     final repo = ref.read(curriculumRepositoryProvider);
     final months = await repo.getMonths();
@@ -62,10 +62,10 @@ class MonthDetailScreen extends ConsumerWidget {
                       Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: color.withOpacity(0.06),
+                          color: color.withValues(alpha: 0.06),
                           borderRadius: BorderRadius.circular(16),
                           border:
-                              Border.all(color: color.withOpacity(0.2)),
+                              Border.all(color: color.withValues(alpha: 0.2)),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,8 +109,7 @@ class MonthDetailScreen extends ConsumerWidget {
                               ),
                               const SizedBox(height: 8),
                               ...month.objectives.map((o) => Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 4),
+                                    padding: const EdgeInsets.only(bottom: 4),
                                     child: Row(
                                       children: [
                                         Icon(Icons.check_circle,
@@ -122,8 +121,8 @@ class MonthDetailScreen extends ConsumerWidget {
                                                   .textTheme
                                                   .bodySmall
                                                   ?.copyWith(
-                                                    color: AppColors
-                                                        .textSecondary,
+                                                    color:
+                                                        AppColors.textSecondary,
                                                   )),
                                         ),
                                       ],
@@ -138,10 +137,11 @@ class MonthDetailScreen extends ConsumerWidget {
                       // Weeks
                       Text(
                         'WEEKS',
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                              color: AppColors.textHint,
-                              letterSpacing: 2,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  color: AppColors.textHint,
+                                  letterSpacing: 2,
+                                ),
                       ),
                       const SizedBox(height: 10),
                       ...weeks.map((week) => _WeekTile(
@@ -208,7 +208,7 @@ class _WeekTile extends StatelessWidget {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
+                color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Center(
@@ -256,7 +256,7 @@ class _WeekTile extends StatelessWidget {
                   height: 28,
                   decoration: BoxDecoration(
                     color: day.isExam
-                        ? AppColors.cyberRed.withOpacity(0.12)
+                        ? AppColors.cyberRed.withValues(alpha: 0.12)
                         : AppColors.bgElevated,
                     borderRadius: BorderRadius.circular(6),
                   ),

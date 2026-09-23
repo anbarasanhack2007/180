@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/repositories/progress_repository.dart';
 import '../../../data/repositories/curriculum_repository.dart';
 import '../../../data/models/curriculum_models.dart';
-import '../../../domain/entities/progress.dart';
 import '../../../features/auth/providers/auth_providers.dart';
 
 // Today's day number (based on user's completed days + 1)

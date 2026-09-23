@@ -5,7 +5,8 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/cyber_background.dart';
 import '../../../services/supabase_service.dart';
 
-final adminUsersListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async {
+final adminUsersListProvider =
+    FutureProvider<List<Map<String, dynamic>>>((ref) async {
   try {
     final data = await SupabaseService.profiles
         .select()
@@ -85,7 +86,8 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -95,7 +97,10 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
                         children: [
                           Text(
                             'CADET INTELLIGENCE',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
                                   color: AppColors.cyberCyan,
                                   letterSpacing: 2.0,
                                   fontWeight: FontWeight.bold,
@@ -103,7 +108,10 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
                           ),
                           Text(
                             'Student Cadets Roster',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -112,7 +120,8 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.refresh, color: AppColors.textSecondary),
+                      icon: const Icon(Icons.refresh,
+                          color: AppColors.textSecondary),
                       onPressed: () => ref.invalidate(adminUsersListProvider),
                     ),
                   ],
@@ -121,20 +130,32 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
 
               // Search Bar
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: TextField(
                   onChanged: (v) => setState(() => _searchQuery = v),
                   style: const TextStyle(color: AppColors.textPrimary),
                   decoration: InputDecoration(
                     hintText: 'Search cadet by name, email, or role...',
                     hintStyle: const TextStyle(color: AppColors.textMuted),
-                    prefixIcon: const Icon(Icons.search, color: AppColors.cyberCyan),
+                    prefixIcon:
+                        const Icon(Icons.search, color: AppColors.cyberCyan),
                     filled: true,
                     fillColor: AppColors.bgCard,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.borderColor)),
-                    enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.borderColor)),
-                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.cyberCyan)),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 10),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide:
+                            const BorderSide(color: AppColors.borderColor)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide:
+                            const BorderSide(color: AppColors.borderColor)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide:
+                            const BorderSide(color: AppColors.cyberCyan)),
                   ),
                 ),
               ),
@@ -143,17 +164,28 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
               Expanded(
                 child: usersAsync.when(
                   loading: () => const Center(
-                    child: CircularProgressIndicator(color: AppColors.cyberCyan),
+                    child:
+                        CircularProgressIndicator(color: AppColors.cyberCyan),
                   ),
                   error: (err, _) => Center(
-                    child: Text('Error: $err', style: const TextStyle(color: AppColors.neonRed)),
+                    child: Text('Error: $err',
+                        style: const TextStyle(color: AppColors.neonRed)),
                   ),
                   data: (cadets) {
                     final filtered = cadets.where((u) {
                       return _searchQuery.isEmpty ||
-                          (u['full_name'] ?? '').toString().toLowerCase().contains(_searchQuery.toLowerCase()) ||
-                          (u['email'] ?? '').toString().toLowerCase().contains(_searchQuery.toLowerCase()) ||
-                          (u['target_role'] ?? '').toString().toLowerCase().contains(_searchQuery.toLowerCase());
+                          (u['full_name'] ?? '')
+                              .toString()
+                              .toLowerCase()
+                              .contains(_searchQuery.toLowerCase()) ||
+                          (u['email'] ?? '')
+                              .toString()
+                              .toLowerCase()
+                              .contains(_searchQuery.toLowerCase()) ||
+                          (u['target_role'] ?? '')
+                              .toString()
+                              .toLowerCase()
+                              .contains(_searchQuery.toLowerCase());
                     }).toList();
 
                     return ListView.separated(
@@ -179,40 +211,64 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
                                   CircleAvatar(
                                     radius: 20,
                                     backgroundColor: isAdmin
-                                        ? AppColors.neonPurple.withValues(alpha: 0.2)
-                                        : AppColors.cyberCyan.withValues(alpha: 0.2),
+                                        ? AppColors.neonPurple
+                                            .withValues(alpha: 0.2)
+                                        : AppColors.cyberCyan
+                                            .withValues(alpha: 0.2),
                                     child: Icon(
-                                      isAdmin ? Icons.admin_panel_settings : Icons.person,
-                                      color: isAdmin ? AppColors.neonPurple : AppColors.cyberCyan,
+                                      isAdmin
+                                          ? Icons.admin_panel_settings
+                                          : Icons.person,
+                                      color: isAdmin
+                                          ? AppColors.neonPurple
+                                          : AppColors.cyberCyan,
                                       size: 20,
                                     ),
                                   ),
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
                                             Text(
-                                              cadet['full_name'] ?? 'Anonymous Cadet',
-                                              style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 15),
+                                              cadet['full_name'] ??
+                                                  'Anonymous Cadet',
+                                              style: const TextStyle(
+                                                  color: AppColors.textPrimary,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15),
                                             ),
                                             const SizedBox(width: 8),
                                             if (isAdmin)
                                               Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 6,
+                                                        vertical: 2),
                                                 decoration: BoxDecoration(
-                                                  color: AppColors.neonPurple.withValues(alpha: 0.2),
-                                                  borderRadius: BorderRadius.circular(4),
+                                                  color: AppColors.neonPurple
+                                                      .withValues(alpha: 0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
                                                 ),
-                                                child: const Text('ADMIN', style: TextStyle(color: AppColors.neonPurple, fontSize: 9, fontWeight: FontWeight.bold)),
+                                                child: const Text('ADMIN',
+                                                    style: TextStyle(
+                                                        color: AppColors
+                                                            .neonPurple,
+                                                        fontSize: 9,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
                                               ),
                                           ],
                                         ),
                                         Text(
                                           cadet['email'] ?? '',
-                                          style: const TextStyle(color: AppColors.textMuted, fontSize: 12),
+                                          style: const TextStyle(
+                                              color: AppColors.textMuted,
+                                              fontSize: 12),
                                         ),
                                       ],
                                     ),
@@ -222,22 +278,33 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
                               const SizedBox(height: 12),
                               Text(
                                 'Target: ${cadet['target_role'] ?? 'Cybersecurity Specialist'}',
-                                style: const TextStyle(color: AppColors.cyberCyan, fontSize: 12, fontWeight: FontWeight.w500),
+                                style: const TextStyle(
+                                    color: AppColors.cyberCyan,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
                               ),
                               const SizedBox(height: 10),
                               const Divider(color: AppColors.borderColor),
                               const SizedBox(height: 6),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  _buildStatItem('Day ${cadet['completed_days'] ?? 0}/180', 'Sprint'),
-                                  _buildStatItem('${cadet['streak'] ?? 0} Days', 'Streak', isFire: true),
-                                  _buildStatItem('${cadet['xp'] ?? 0} XP', 'Reputation'),
+                                  _buildStatItem(
+                                      'Day ${cadet['completed_days'] ?? 0}/180',
+                                      'Sprint'),
+                                  _buildStatItem(
+                                      '${cadet['streak'] ?? 0} Days', 'Streak',
+                                      isFire: true),
+                                  _buildStatItem(
+                                      '${cadet['xp'] ?? 0} XP', 'Reputation'),
                                 ],
                               ),
                             ],
                           ),
-                        ).animate().fadeIn(duration: 200.ms, delay: (index * 30).ms);
+                        )
+                            .animate()
+                            .fadeIn(duration: 200.ms, delay: (index * 30).ms);
                       },
                     );
                   },
@@ -261,7 +328,8 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
             fontSize: 13,
           ),
         ),
-        Text(label, style: const TextStyle(color: AppColors.textMuted, fontSize: 10)),
+        Text(label,
+            style: const TextStyle(color: AppColors.textMuted, fontSize: 10)),
       ],
     );
   }

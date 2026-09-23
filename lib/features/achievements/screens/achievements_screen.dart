@@ -5,15 +5,21 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/cyber_background.dart';
 import '../../../services/supabase_service.dart';
 
-final achievementsListProvider = FutureProvider<List<Map<String, dynamic>>>((ref) async {
+final achievementsListProvider =
+    FutureProvider<List<Map<String, dynamic>>>((ref) async {
   try {
     final userId = SupabaseService.currentUserId;
-    final allAch = await SupabaseService.achievements.select().order('xp_reward', ascending: true);
+    final allAch = await SupabaseService.achievements
+        .select()
+        .order('xp_reward', ascending: true);
     List<dynamic> userAch = [];
     if (userId != null) {
-      userAch = await SupabaseService.userAchievements.select().eq('user_id', userId);
+      userAch =
+          await SupabaseService.userAchievements.select().eq('user_id', userId);
     }
-    final unlockedIds = {for (var item in userAch) item['achievement_id']: item['unlocked_at']};
+    final unlockedIds = {
+      for (var item in userAch) item['achievement_id']: item['unlocked_at']
+    };
 
     if (allAch.isNotEmpty) {
       return allAch.map((ach) {
@@ -36,21 +42,25 @@ final achievementsListProvider = FutureProvider<List<Map<String, dynamic>>>((ref
       'badge_icon': 'bolt',
       'xp_reward': 50,
       'unlocked': true,
-      'unlocked_at': DateTime.now().subtract(const Duration(days: 3)).toIso8601String(),
+      'unlocked_at':
+          DateTime.now().subtract(const Duration(days: 3)).toIso8601String(),
     },
     {
       'id': 'ach-2',
       'title': 'Terminal Initiate',
-      'description': 'Mastered basic Linux shell commands and file permissions.',
+      'description':
+          'Mastered basic Linux shell commands and file permissions.',
       'badge_icon': 'terminal',
       'xp_reward': 100,
       'unlocked': true,
-      'unlocked_at': DateTime.now().subtract(const Duration(days: 2)).toIso8601String(),
+      'unlocked_at':
+          DateTime.now().subtract(const Duration(days: 2)).toIso8601String(),
     },
     {
       'id': 'ach-3',
       'title': 'Packet Sniffer',
-      'description': 'Analyzed live TCP/IP streams and DNS handshakes in Wireshark.',
+      'description':
+          'Analyzed live TCP/IP streams and DNS handshakes in Wireshark.',
       'badge_icon': 'wifi',
       'xp_reward': 150,
       'unlocked': false,
@@ -58,7 +68,8 @@ final achievementsListProvider = FutureProvider<List<Map<String, dynamic>>>((ref
     {
       'id': 'ach-4',
       'title': '7-Day Unbroken Streak',
-      'description': 'Maintained consistent cybersecurity practice for 7 days in a row.',
+      'description':
+          'Maintained consistent cybersecurity practice for 7 days in a row.',
       'badge_icon': 'local_fire_department',
       'xp_reward': 250,
       'unlocked': false,
@@ -66,7 +77,8 @@ final achievementsListProvider = FutureProvider<List<Map<String, dynamic>>>((ref
     {
       'id': 'ach-5',
       'title': 'Payload Crafter',
-      'description': 'Successfully completed all Web Security Academy SQLi & XSS labs.',
+      'description':
+          'Successfully completed all Web Security Academy SQLi & XSS labs.',
       'badge_icon': 'bug_report',
       'xp_reward': 300,
       'unlocked': false,
@@ -74,7 +86,8 @@ final achievementsListProvider = FutureProvider<List<Map<String, dynamic>>>((ref
     {
       'id': 'ach-6',
       'title': 'SOC Tier-1 Certified',
-      'description': 'Analyzed real SIEM logs and detected a simulated brute-force campaign.',
+      'description':
+          'Analyzed real SIEM logs and detected a simulated brute-force campaign.',
       'badge_icon': 'shield',
       'xp_reward': 500,
       'unlocked': false,
@@ -131,7 +144,8 @@ class AchievementsScreen extends ConsumerWidget {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -141,7 +155,10 @@ class AchievementsScreen extends ConsumerWidget {
                         children: [
                           Text(
                             'HALL OF VALOR',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
                                   color: AppColors.cyberCyan,
                                   letterSpacing: 2.0,
                                   fontWeight: FontWeight.bold,
@@ -149,7 +166,10 @@ class AchievementsScreen extends ConsumerWidget {
                           ),
                           Text(
                             'Badges & Achievements',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -165,13 +185,16 @@ class AchievementsScreen extends ConsumerWidget {
               Expanded(
                 child: achievementsAsync.when(
                   loading: () => const Center(
-                    child: CircularProgressIndicator(color: AppColors.cyberCyan),
+                    child:
+                        CircularProgressIndicator(color: AppColors.cyberCyan),
                   ),
                   error: (err, _) => Center(
-                    child: Text('Error loading badges: $err', style: const TextStyle(color: AppColors.neonRed)),
+                    child: Text('Error loading badges: $err',
+                        style: const TextStyle(color: AppColors.neonRed)),
                   ),
                   data: (badges) {
-                    final unlockedCount = badges.where((b) => b['unlocked'] == true).length;
+                    final unlockedCount =
+                        badges.where((b) => b['unlocked'] == true).length;
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,15 +212,19 @@ class AchievementsScreen extends ConsumerWidget {
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(14),
-                              border: Border.all(color: AppColors.cyberCyan.withValues(alpha: 0.3)),
+                              border: Border.all(
+                                  color: AppColors.cyberCyan
+                                      .withValues(alpha: 0.3)),
                             ),
                             child: Row(
                               children: [
-                                const Text('🎖️', style: TextStyle(fontSize: 28)),
+                                const Text('🎖️',
+                                    style: TextStyle(fontSize: 28)),
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         '$unlockedCount of ${badges.length} Badges Unlocked',
@@ -211,9 +238,13 @@ class AchievementsScreen extends ConsumerWidget {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(4),
                                         child: LinearProgressIndicator(
-                                          value: badges.isEmpty ? 0 : unlockedCount / badges.length,
+                                          value: badges.isEmpty
+                                              ? 0
+                                              : unlockedCount / badges.length,
                                           backgroundColor: AppColors.bgSurface,
-                                          valueColor: const AlwaysStoppedAnimation(AppColors.cyberCyan),
+                                          valueColor:
+                                              const AlwaysStoppedAnimation(
+                                                  AppColors.cyberCyan),
                                           minHeight: 6,
                                         ),
                                       ),
@@ -230,8 +261,10 @@ class AchievementsScreen extends ConsumerWidget {
                         // Badges Grid
                         Expanded(
                           child: GridView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 4),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 12,
                               mainAxisSpacing: 12,
@@ -249,8 +282,10 @@ class AchievementsScreen extends ConsumerWidget {
                                   borderRadius: BorderRadius.circular(14),
                                   border: Border.all(
                                     color: isUnlocked
-                                        ? AppColors.cyberCyan.withValues(alpha: 0.5)
-                                        : AppColors.borderColor.withValues(alpha: 0.5),
+                                        ? AppColors.cyberCyan
+                                            .withValues(alpha: 0.5)
+                                        : AppColors.borderColor
+                                            .withValues(alpha: 0.5),
                                   ),
                                 ),
                                 padding: const EdgeInsets.all(12),
@@ -261,16 +296,21 @@ class AchievementsScreen extends ConsumerWidget {
                                       padding: const EdgeInsets.all(12),
                                       decoration: BoxDecoration(
                                         color: isUnlocked
-                                            ? AppColors.cyberCyan.withValues(alpha: 0.15)
+                                            ? AppColors.cyberCyan
+                                                .withValues(alpha: 0.15)
                                             : AppColors.bgSurface,
                                         shape: BoxShape.circle,
                                         border: Border.all(
-                                          color: isUnlocked ? AppColors.cyberCyan : AppColors.borderColor,
+                                          color: isUnlocked
+                                              ? AppColors.cyberCyan
+                                              : AppColors.borderColor,
                                         ),
                                       ),
                                       child: Icon(
                                         icon,
-                                        color: isUnlocked ? AppColors.cyberCyan : AppColors.textMuted,
+                                        color: isUnlocked
+                                            ? AppColors.cyberCyan
+                                            : AppColors.textMuted,
                                         size: 28,
                                       ),
                                     ),
@@ -281,7 +321,9 @@ class AchievementsScreen extends ConsumerWidget {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                        color: isUnlocked ? AppColors.textPrimary : AppColors.textMuted,
+                                        color: isUnlocked
+                                            ? AppColors.textPrimary
+                                            : AppColors.textMuted,
                                         fontSize: 13,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -300,17 +342,21 @@ class AchievementsScreen extends ConsumerWidget {
                                     ),
                                     const SizedBox(height: 6),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 6, vertical: 2),
                                       decoration: BoxDecoration(
                                         color: isUnlocked
-                                            ? AppColors.matrixGreen.withValues(alpha: 0.15)
+                                            ? AppColors.matrixGreen
+                                                .withValues(alpha: 0.15)
                                             : AppColors.bgSurface,
                                         borderRadius: BorderRadius.circular(4),
                                       ),
                                       child: Text(
                                         '+${b['xp_reward']} XP',
                                         style: TextStyle(
-                                          color: isUnlocked ? AppColors.matrixGreen : AppColors.textMuted,
+                                          color: isUnlocked
+                                              ? AppColors.matrixGreen
+                                              : AppColors.textMuted,
                                           fontSize: 10,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -318,7 +364,8 @@ class AchievementsScreen extends ConsumerWidget {
                                     ),
                                   ],
                                 ),
-                              ).animate().fadeIn(duration: 200.ms, delay: (index * 30).ms);
+                              ).animate().fadeIn(
+                                  duration: 200.ms, delay: (index * 30).ms);
                             },
                           ),
                         ),

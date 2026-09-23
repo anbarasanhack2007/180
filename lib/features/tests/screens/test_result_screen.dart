@@ -5,10 +5,11 @@ import '../../../app/theme/app_colors.dart';
 import '../../../core/widgets/cyber_background.dart';
 import '../../../services/supabase_service.dart';
 
-final testResultProvider =
-    FutureProvider.family<Map<String, dynamic>?, String>((ref, attemptId) async {
+final testResultProvider = FutureProvider.family<Map<String, dynamic>?, String>(
+    (ref, attemptId) async {
   final data = await SupabaseService.testAttempts
-      .select('*, test_answers(*, questions(question, correct_answer, explanation))')
+      .select(
+          '*, test_answers(*, questions(question, correct_answer, explanation))')
       .eq('id', attemptId)
       .maybeSingle();
   return data;
@@ -52,7 +53,8 @@ class TestResultScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.close, color: AppColors.textPrimary),
+                          icon: const Icon(Icons.close,
+                              color: AppColors.textPrimary),
                           onPressed: () => context.go('/tests'),
                         ),
                       ],
@@ -63,7 +65,8 @@ class TestResultScreen extends ConsumerWidget {
                     alignment: Alignment.center,
                     children: [
                       SizedBox(
-                        width: 140, height: 140,
+                        width: 140,
+                        height: 140,
                         child: CircularProgressIndicator(
                           value: pct / 100,
                           strokeWidth: 10,
@@ -74,16 +77,29 @@ class TestResultScreen extends ConsumerWidget {
                       ),
                       Column(
                         children: [
-                          Text('${pct.toStringAsFixed(0)}%', style: TextStyle(color: scoreColor, fontSize: 32, fontWeight: FontWeight.w900)),
-                          Text('$score/$total', style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+                          Text('${pct.toStringAsFixed(0)}%',
+                              style: TextStyle(
+                                  color: scoreColor,
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w900)),
+                          Text('$score/$total',
+                              style: const TextStyle(
+                                  color: AppColors.textSecondary,
+                                  fontSize: 14)),
                         ],
                       ),
                     ],
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    pct >= 80 ? '🎉 Excellent!' : pct >= 60 ? '👍 Good job!' : '📚 Keep studying!',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary, fontWeight: FontWeight.w700),
+                    pct >= 80
+                        ? '🎉 Excellent!'
+                        : pct >= 60
+                            ? '👍 Good job!'
+                            : '📚 Keep studying!',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: AppColors.textPrimary,
+                        fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 24),
                   Expanded(
@@ -100,20 +116,43 @@ class TestResultScreen extends ConsumerWidget {
                           decoration: BoxDecoration(
                             color: AppColors.bgCard,
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: isCorrect ? AppColors.cyberGreen.withOpacity(0.3) : AppColors.cyberRed.withOpacity(0.3)),
+                            border: Border.all(
+                                color: isCorrect
+                                    ? AppColors.cyberGreen
+                                        .withValues(alpha: 0.3)
+                                    : AppColors.cyberRed
+                                        .withValues(alpha: 0.3)),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(children: [
-                                Icon(isCorrect ? Icons.check_circle : Icons.cancel, color: isCorrect ? AppColors.cyberGreen : AppColors.cyberRed, size: 16),
+                                Icon(
+                                    isCorrect
+                                        ? Icons.check_circle
+                                        : Icons.cancel,
+                                    color: isCorrect
+                                        ? AppColors.cyberGreen
+                                        : AppColors.cyberRed,
+                                    size: 16),
                                 const SizedBox(width: 6),
-                                Expanded(child: Text(q?['question'] as String? ?? '', style: const TextStyle(color: AppColors.textPrimary, fontSize: 13))),
+                                Expanded(
+                                    child: Text(q?['question'] as String? ?? '',
+                                        style: const TextStyle(
+                                            color: AppColors.textPrimary,
+                                            fontSize: 13))),
                               ]),
                               if (!isCorrect && q != null) ...[
                                 const SizedBox(height: 6),
-                                Text('✓ Correct: ${q['correct_answer']}', style: const TextStyle(color: AppColors.cyberGreen, fontSize: 12)),
-                                if (q['explanation'] != null) Text(q['explanation'] as String, style: const TextStyle(color: AppColors.textHint, fontSize: 11)),
+                                Text('✓ Correct: ${q['correct_answer']}',
+                                    style: const TextStyle(
+                                        color: AppColors.cyberGreen,
+                                        fontSize: 12)),
+                                if (q['explanation'] != null)
+                                  Text(q['explanation'] as String,
+                                      style: const TextStyle(
+                                          color: AppColors.textHint,
+                                          fontSize: 11)),
                               ],
                             ],
                           ),
@@ -125,16 +164,23 @@ class TestResultScreen extends ConsumerWidget {
                     padding: const EdgeInsets.all(16),
                     child: ElevatedButton(
                       onPressed: () => context.go('/tests'),
-                      style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50), backgroundColor: AppColors.cyberCyan, foregroundColor: AppColors.bgPrimary),
-                      child: const Text('BACK TO TESTS', style: TextStyle(fontWeight: FontWeight.w700)),
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(double.infinity, 50),
+                          backgroundColor: AppColors.cyberCyan,
+                          foregroundColor: AppColors.bgPrimary),
+                      child: const Text('BACK TO TESTS',
+                          style: TextStyle(fontWeight: FontWeight.w700)),
                     ),
                   ),
                 ],
               ),
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator(color: AppColors.cyberCyan)),
-          error: (e, _) => Center(child: Text('Error: $e', style: const TextStyle(color: AppColors.cyberRed))),
+          loading: () => const Center(
+              child: CircularProgressIndicator(color: AppColors.cyberCyan)),
+          error: (e, _) => Center(
+              child: Text('Error: $e',
+                  style: const TextStyle(color: AppColors.cyberRed))),
         ),
       ),
     );

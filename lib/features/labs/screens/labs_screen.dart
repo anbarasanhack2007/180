@@ -44,7 +44,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'Professor Messer',
-                    description: 'CompTIA Security+, A+, Network+ study guides and videos.',
+                    description:
+                        'CompTIA Security+, A+, Network+ study guides and videos.',
                     platform: 'YouTube',
                     icon: Icons.play_circle_filled,
                     color: const Color(0xFFFF0000),
@@ -53,7 +54,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'freeCodeCamp',
-                    description: 'Full cybersecurity courses and ethical hacking tutorials.',
+                    description:
+                        'Full cybersecurity courses and ethical hacking tutorials.',
                     platform: 'YouTube',
                     icon: Icons.play_circle_filled,
                     color: const Color(0xFFFF0000),
@@ -62,7 +64,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'Corey Schafer',
-                    description: 'Python programming for beginners and intermediate learners.',
+                    description:
+                        'Python programming for beginners and intermediate learners.',
                     platform: 'YouTube',
                     icon: Icons.play_circle_filled,
                     color: const Color(0xFFFF0000),
@@ -80,7 +83,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'John Hammond',
-                    description: 'CTF walkthroughs, cybersecurity challenges and hacking videos.',
+                    description:
+                        'CTF walkthroughs, cybersecurity challenges and hacking videos.',
                     platform: 'YouTube',
                     icon: Icons.play_circle_filled,
                     color: const Color(0xFFFF0000),
@@ -89,7 +93,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'The Cyber Mentor (TCM)',
-                    description: 'Ethical hacking, pentesting, practical cybersecurity.',
+                    description:
+                        'Ethical hacking, pentesting, practical cybersecurity.',
                     platform: 'YouTube',
                     icon: Icons.play_circle_filled,
                     color: const Color(0xFFFF0000),
@@ -101,7 +106,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'Pre-Security Path',
-                    description: 'Start your cybersecurity journey. Learn the basics.',
+                    description:
+                        'Start your cybersecurity journey. Learn the basics.',
                     platform: 'TryHackMe',
                     icon: Icons.science_outlined,
                     color: AppColors.cyberGreen,
@@ -119,7 +125,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'Jr Penetration Tester',
-                    description: 'Learn ethical hacking and penetration testing fundamentals.',
+                    description:
+                        'Learn ethical hacking and penetration testing fundamentals.',
                     platform: 'TryHackMe',
                     icon: Icons.science_outlined,
                     color: AppColors.cyberGreen,
@@ -140,7 +147,8 @@ class LabsScreen extends ConsumerWidget {
                   _labCard(
                     context,
                     title: 'Web Security Academy',
-                    description: 'Free web application security training with hands-on labs.',
+                    description:
+                        'Free web application security training with hands-on labs.',
                     platform: 'PortSwigger',
                     icon: Icons.bug_report_outlined,
                     color: AppColors.cyberOrange,
@@ -150,10 +158,10 @@ class LabsScreen extends ConsumerWidget {
                   Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: AppColors.cyberOrange.withOpacity(0.08),
+                      color: AppColors.cyberOrange.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                          color: AppColors.cyberOrange.withOpacity(0.2)),
+                          color: AppColors.cyberOrange.withValues(alpha: 0.2)),
                     ),
                     child: Row(
                       children: [
@@ -214,7 +222,7 @@ class LabsScreen extends ConsumerWidget {
         decoration: BoxDecoration(
           color: AppColors.bgCard,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withOpacity(0.2)),
+          border: Border.all(color: color.withValues(alpha: 0.2)),
         ),
         child: Row(
           children: [
@@ -222,7 +230,7 @@ class LabsScreen extends ConsumerWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
+                color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(icon, color: color, size: 22),

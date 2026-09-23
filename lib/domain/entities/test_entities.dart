@@ -75,8 +75,7 @@ class TestAttempt extends Equatable {
     this.answers = const [],
   });
 
-  double get percentage =>
-      totalPoints > 0 ? (score / totalPoints * 100) : 0;
+  double get percentage => totalPoints > 0 ? (score / totalPoints * 100) : 0;
 
   @override
   List<Object?> get props => [id, userId, testId];

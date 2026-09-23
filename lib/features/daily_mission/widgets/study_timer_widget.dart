@@ -91,8 +91,7 @@ class _StudyTimerWidgetState extends ConsumerState<StudyTimerWidget> {
   @override
   Widget build(BuildContext context) {
     final progress = _running
-        ? (_selectedMinutes * 60 - _remainingSeconds) /
-            (_selectedMinutes * 60)
+        ? (_selectedMinutes * 60 - _remainingSeconds) / (_selectedMinutes * 60)
         : 0.0;
 
     return Container(
@@ -100,7 +99,7 @@ class _StudyTimerWidgetState extends ConsumerState<StudyTimerWidget> {
       decoration: BoxDecoration(
         color: AppColors.bgCard,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.cyberPurple.withOpacity(0.3)),
+        border: Border.all(color: AppColors.cyberPurple.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -133,11 +132,11 @@ class _StudyTimerWidgetState extends ConsumerState<StudyTimerWidget> {
                     _remainingSeconds = min * 60;
                   }),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: selected
-                          ? AppColors.cyberPurple.withOpacity(0.2)
+                          ? AppColors.cyberPurple.withValues(alpha: 0.2)
                           : AppColors.bgElevated,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(

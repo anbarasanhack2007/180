@@ -9,7 +9,7 @@ import '../../../services/supabase_service.dart';
 final projectDetailProvider =
     FutureProvider.family<Map<String, dynamic>?, String>((ref, id) async {
   final data = await SupabaseService.projects
-      .select('*, project_tasks(*)' )
+      .select('*, project_tasks(*)')
       .eq('id', id)
       .maybeSingle();
   return data;
@@ -34,8 +34,12 @@ class ProjectDetailScreen extends ConsumerWidget {
             }
             final number = project['project_number'] as int? ?? 1;
             final colors = [
-              AppColors.cyberCyan, AppColors.cyberBlue, AppColors.cyberPurple,
-              AppColors.cyberGreen, AppColors.cyberOrange, AppColors.cyberPink,
+              AppColors.cyberCyan,
+              AppColors.cyberBlue,
+              AppColors.cyberPurple,
+              AppColors.cyberGreen,
+              AppColors.cyberOrange,
+              AppColors.cyberPink,
             ];
             final color = colors[(number - 1).clamp(0, colors.length - 1)];
             final tasks = project['project_tasks'] as List<dynamic>? ?? [];
@@ -61,10 +65,11 @@ class ProjectDetailScreen extends ConsumerWidget {
                     delegate: SliverChildListDelegate([
                       Text(
                         project['title'] as String? ?? '',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              color: AppColors.textPrimary,
-                              fontWeight: FontWeight.w800,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  color: AppColors.textPrimary,
+                                  fontWeight: FontWeight.w800,
+                                ),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -85,7 +90,8 @@ class ProjectDetailScreen extends ConsumerWidget {
                       const SizedBox(height: 12),
 
                       // Architecture
-                      if ((project['architecture'] as String?)?.isNotEmpty ?? false)
+                      if ((project['architecture'] as String?)?.isNotEmpty ??
+                          false)
                         _InfoCard(
                           title: 'ARCHITECTURE',
                           content: project['architecture'] as String,
@@ -97,8 +103,12 @@ class ProjectDetailScreen extends ConsumerWidget {
                       // Tech stack
                       if (project['tech_stack'] != null) ...[
                         Text('TECH STACK',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: AppColors.textHint, letterSpacing: 1)),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
+                                    color: AppColors.textHint,
+                                    letterSpacing: 1)),
                         const SizedBox(height: 8),
                         Wrap(
                           spacing: 8,
@@ -108,10 +118,10 @@ class ProjectDetailScreen extends ConsumerWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 5),
                                     decoration: BoxDecoration(
-                                      color: color.withOpacity(0.1),
+                                      color: color.withValues(alpha: 0.1),
                                       borderRadius: BorderRadius.circular(6),
                                       border: Border.all(
-                                          color: color.withOpacity(0.2)),
+                                          color: color.withValues(alpha: 0.2)),
                                     ),
                                     child: Text(t.toString(),
                                         style: TextStyle(
@@ -123,7 +133,8 @@ class ProjectDetailScreen extends ConsumerWidget {
                       ],
 
                       // GitHub
-                      if ((project['github_url'] as String?)?.isNotEmpty ?? false)
+                      if ((project['github_url'] as String?)?.isNotEmpty ??
+                          false)
                         ElevatedButton.icon(
                           onPressed: () async {
                             final url = project['github_url'] as String;
@@ -146,8 +157,12 @@ class ProjectDetailScreen extends ConsumerWidget {
                       // Tasks / Milestones
                       if (tasks.isNotEmpty) ...[
                         Text('MILESTONES',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: AppColors.textHint, letterSpacing: 1)),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
+                                    color: AppColors.textHint,
+                                    letterSpacing: 1)),
                         const SizedBox(height: 8),
                         ...tasks.asMap().entries.map((e) {
                           final task = e.value as Map<String, dynamic>;
@@ -165,7 +180,7 @@ class ProjectDetailScreen extends ConsumerWidget {
                                   width: 26,
                                   height: 26,
                                   decoration: BoxDecoration(
-                                    color: color.withOpacity(0.12),
+                                    color: color.withValues(alpha: 0.12),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Center(
@@ -181,7 +196,8 @@ class ProjectDetailScreen extends ConsumerWidget {
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         task['title'] as String? ?? '',
@@ -190,7 +206,9 @@ class ProjectDetailScreen extends ConsumerWidget {
                                             fontSize: 13,
                                             fontWeight: FontWeight.w600),
                                       ),
-                                      if ((task['description'] as String?)?.isNotEmpty ?? false)
+                                      if ((task['description'] as String?)
+                                              ?.isNotEmpty ??
+                                          false)
                                         Text(
                                           task['description'] as String,
                                           style: const TextStyle(
@@ -212,8 +230,8 @@ class ProjectDetailScreen extends ConsumerWidget {
               ],
             );
           },
-          loading: () =>
-              const Center(child: CircularProgressIndicator(color: AppColors.cyberCyan)),
+          loading: () => const Center(
+              child: CircularProgressIndicator(color: AppColors.cyberCyan)),
           error: (e, _) => Center(
               child: Text('Error: ${e.toString()}',
                   style: const TextStyle(color: AppColors.cyberRed))),
@@ -262,8 +280,8 @@ class _InfoCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(content,
-              style: const TextStyle(
-                  color: AppColors.textPrimary, fontSize: 13)),
+              style:
+                  const TextStyle(color: AppColors.textPrimary, fontSize: 13)),
         ],
       ),
     );

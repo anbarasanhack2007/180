@@ -71,11 +71,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                          color: AppColors.cyberCyan.withOpacity(0.5),
+                          color: AppColors.cyberCyan.withValues(alpha: 0.5),
                           width: 2),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.cyberCyan.withOpacity(0.2),
+                          color: AppColors.cyberCyan.withValues(alpha: 0.2),
                           blurRadius: 30,
                           spreadRadius: 10,
                         ),
@@ -93,10 +93,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                   const SizedBox(height: 32),
                   Text(
                     'CYBERSPRINT',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineLarge
-                        ?.copyWith(
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           color: AppColors.cyberCyan,
                           fontWeight: FontWeight.w900,
                           letterSpacing: 8,
@@ -105,10 +102,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                   const SizedBox(height: 4),
                   Text(
                     '1 8 0',
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.copyWith(
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.w800,
                           letterSpacing: 16,

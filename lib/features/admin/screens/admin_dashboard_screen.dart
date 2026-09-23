@@ -23,7 +23,8 @@ class AdminDashboardScreen extends ConsumerWidget {
                 Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -34,15 +35,22 @@ class AdminDashboardScreen extends ConsumerWidget {
                           Row(
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 2),
                                 decoration: BoxDecoration(
-                                  color: AppColors.neonPurple.withValues(alpha: 0.2),
+                                  color: AppColors.neonPurple
+                                      .withValues(alpha: 0.2),
                                   borderRadius: BorderRadius.circular(4),
-                                  border: Border.all(color: AppColors.neonPurple),
+                                  border:
+                                      Border.all(color: AppColors.neonPurple),
                                 ),
                                 child: const Text(
                                   'FACULTY ROOT PRIVILEGES',
-                                  style: TextStyle(color: AppColors.neonPurple, fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0),
+                                  style: TextStyle(
+                                      color: AppColors.neonPurple,
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.0),
                                 ),
                               ),
                             ],
@@ -50,7 +58,10 @@ class AdminDashboardScreen extends ConsumerWidget {
                           const SizedBox(height: 4),
                           Text(
                             'CyberCommand Admin Console',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -67,11 +78,21 @@ class AdminDashboardScreen extends ConsumerWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: _buildKpiCard('Cadets Enrolled', '142', '+12 this week', AppColors.cyberCyan, Icons.people_alt_outlined),
+                      child: _buildKpiCard(
+                          'Cadets Enrolled',
+                          '142',
+                          '+12 this week',
+                          AppColors.cyberCyan,
+                          Icons.people_alt_outlined),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: _buildKpiCard('Curriculum Nodes', '180 Days', '6 Full Months', AppColors.matrixGreen, Icons.calendar_month_outlined),
+                      child: _buildKpiCard(
+                          'Curriculum Nodes',
+                          '180 Days',
+                          '6 Full Months',
+                          AppColors.matrixGreen,
+                          Icons.calendar_month_outlined),
                     ),
                   ],
                 ),
@@ -79,11 +100,21 @@ class AdminDashboardScreen extends ConsumerWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: _buildKpiCard('Exams & Quizzes', '30 Tests', '24 Wk + 6 Exams', AppColors.neonYellow, Icons.quiz_outlined),
+                      child: _buildKpiCard(
+                          'Exams & Quizzes',
+                          '30 Tests',
+                          '24 Wk + 6 Exams',
+                          AppColors.neonYellow,
+                          Icons.quiz_outlined),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: _buildKpiCard('Database Sync', 'Healthy', 'RLS Active', AppColors.neonPurple, Icons.shield_outlined),
+                      child: _buildKpiCard(
+                          'Database Sync',
+                          'Healthy',
+                          'RLS Active',
+                          AppColors.neonPurple,
+                          Icons.shield_outlined),
                     ),
                   ],
                 ),
@@ -104,7 +135,8 @@ class AdminDashboardScreen extends ConsumerWidget {
                 _buildActionModule(
                   context,
                   title: 'Cadet Roster & Analytics',
-                  description: 'Monitor individual student progress, streaks, test scores, and flags.',
+                  description:
+                      'Monitor individual student progress, streaks, test scores, and flags.',
                   icon: Icons.people_outline,
                   color: AppColors.cyberCyan,
                   route: '${AppRoutes.adminDashboard}/users',
@@ -113,7 +145,8 @@ class AdminDashboardScreen extends ConsumerWidget {
                 _buildActionModule(
                   context,
                   title: 'Curriculum & Mission Editor',
-                  description: 'Manage months, weekly schedules, daily mission topics, and lab resources.',
+                  description:
+                      'Manage months, weekly schedules, daily mission topics, and lab resources.',
                   icon: Icons.menu_book_outlined,
                   color: AppColors.matrixGreen,
                   route: '${AppRoutes.adminDashboard}/curriculum',
@@ -122,7 +155,8 @@ class AdminDashboardScreen extends ConsumerWidget {
                 _buildActionModule(
                   context,
                   title: 'Assessment & Test Bank',
-                  description: 'Create weekly quizzes, MCQ questions, answer keys, and pass criteria.',
+                  description:
+                      'Create weekly quizzes, MCQ questions, answer keys, and pass criteria.',
                   icon: Icons.assignment_turned_in_outlined,
                   color: AppColors.neonYellow,
                   route: '${AppRoutes.adminDashboard}/tests',
@@ -146,19 +180,29 @@ class AdminDashboardScreen extends ConsumerWidget {
                           Container(
                             width: 8,
                             height: 8,
-                            decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.matrixGreen),
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.matrixGreen),
                           ),
                           const SizedBox(width: 8),
                           const Text(
                             'AUDIT LOG AUDITOR',
-                            style: TextStyle(color: AppColors.matrixGreen, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.2),
+                            style: TextStyle(
+                                color: AppColors.matrixGreen,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2),
                           ),
                         ],
                       ),
                       const SizedBox(height: 10),
                       const Text(
                         '[2026-09-23 17:40:02 UTC] System integrity check: PASS\n[2026-09-23 17:42:15 UTC] PostgreSQL RLS policies confirmed active on 35 tables\n[2026-09-23 17:48:30 UTC] Automated streak recalculation trigger executed: 0 errors',
-                        style: TextStyle(color: AppColors.textMuted, fontSize: 11, fontFamily: 'monospace', height: 1.4),
+                        style: TextStyle(
+                            color: AppColors.textMuted,
+                            fontSize: 11,
+                            fontFamily: 'monospace',
+                            height: 1.4),
                       ),
                     ],
                   ),
@@ -172,7 +216,8 @@ class AdminDashboardScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildKpiCard(String title, String value, String subtitle, Color color, IconData icon) {
+  Widget _buildKpiCard(
+      String title, String value, String subtitle, Color color, IconData icon) {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -186,14 +231,20 @@ class AdminDashboardScreen extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: const TextStyle(color: AppColors.textMuted, fontSize: 11)),
+              Text(title,
+                  style: const TextStyle(
+                      color: AppColors.textMuted, fontSize: 11)),
               Icon(icon, color: color, size: 16),
             ],
           ),
           const SizedBox(height: 8),
-          Text(value, style: TextStyle(color: color, fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(value,
+              style: TextStyle(
+                  color: color, fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 2),
-          Text(subtitle, style: const TextStyle(color: AppColors.textSecondary, fontSize: 10)),
+          Text(subtitle,
+              style: const TextStyle(
+                  color: AppColors.textSecondary, fontSize: 10)),
         ],
       ),
     );
@@ -235,17 +286,22 @@ class AdminDashboardScreen extends ConsumerWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: const TextStyle(color: AppColors.textMuted, fontSize: 12),
+                    style: const TextStyle(
+                        color: AppColors.textMuted, fontSize: 12),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.textMuted),
+            const Icon(Icons.arrow_forward_ios,
+                size: 16, color: AppColors.textMuted),
           ],
         ),
       ),

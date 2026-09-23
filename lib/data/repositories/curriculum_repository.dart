@@ -19,9 +19,7 @@ abstract class CurriculumRepository {
 class CurriculumRepositoryImpl implements CurriculumRepository {
   @override
   Future<List<MonthModel>> getMonths() async {
-    final data = await SupabaseService.months
-        .select()
-        .order('month_number');
+    final data = await SupabaseService.months.select().order('month_number');
     return (data as List).map((e) => MonthModel.fromJson(e)).toList();
   }
 
@@ -64,9 +62,7 @@ class CurriculumRepositoryImpl implements CurriculumRepository {
         .select()
         .eq('week_number', weekNumber)
         .order('day_number');
-    return (data as List)
-        .map((e) => DailyTaskModel.fromJson(e))
-        .toList();
+    return (data as List).map((e) => DailyTaskModel.fromJson(e)).toList();
   }
 
   @override
@@ -75,9 +71,7 @@ class CurriculumRepositoryImpl implements CurriculumRepository {
         .select()
         .eq('month_number', monthNumber)
         .order('day_number');
-    return (data as List)
-        .map((e) => DailyTaskModel.fromJson(e))
-        .toList();
+    return (data as List).map((e) => DailyTaskModel.fromJson(e)).toList();
   }
 
   @override
@@ -94,14 +88,11 @@ class CurriculumRepositoryImpl implements CurriculumRepository {
   }
 
   @override
-  Future<List<ChecklistItemModel>> getChecklistItems(
-      String dayTaskId) async {
+  Future<List<ChecklistItemModel>> getChecklistItems(String dayTaskId) async {
     final data = await SupabaseService.checklistItems
         .select()
         .eq('day_task_id', dayTaskId)
         .order('sort_order');
-    return (data as List)
-        .map((e) => ChecklistItemModel.fromJson(e))
-        .toList();
+    return (data as List).map((e) => ChecklistItemModel.fromJson(e)).toList();
   }
 }

@@ -31,7 +31,8 @@ class AnalyticsScreen extends ConsumerWidget {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -41,7 +42,10 @@ class AnalyticsScreen extends ConsumerWidget {
                         children: [
                           Text(
                             'TELEMETRY & METRICS',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
                                   color: AppColors.cyberCyan,
                                   letterSpacing: 2.0,
                                   fontWeight: FontWeight.bold,
@@ -49,7 +53,10 @@ class AnalyticsScreen extends ConsumerWidget {
                           ),
                           Text(
                             'Study Analytics Radar',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -85,7 +92,8 @@ class AnalyticsScreen extends ConsumerWidget {
                             child: _buildMetricTile(
                               title: 'Days Finished',
                               value: '$completedDays/180',
-                              subtitle: '${((completedDays / 180) * 100).toStringAsFixed(1)}% complete',
+                              subtitle:
+                                  '${((completedDays / 180) * 100).toStringAsFixed(1)}% complete',
                               color: AppColors.matrixGreen,
                               icon: Icons.check_circle_outline,
                             ),
@@ -153,10 +161,21 @@ class AnalyticsScreen extends ConsumerWidget {
                                       sideTitles: SideTitles(
                                         showTitles: true,
                                         getTitlesWidget: (val, meta) {
-                                          const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+                                          const days = [
+                                            'M',
+                                            'T',
+                                            'W',
+                                            'T',
+                                            'F',
+                                            'S',
+                                            'S'
+                                          ];
                                           final idx = val.toInt();
                                           if (idx >= 0 && idx < days.length) {
-                                            return Text(days[idx], style: const TextStyle(color: AppColors.textMuted, fontSize: 11));
+                                            return Text(days[idx],
+                                                style: const TextStyle(
+                                                    color: AppColors.textMuted,
+                                                    fontSize: 11));
                                           }
                                           return const SizedBox.shrink();
                                         },
@@ -167,17 +186,27 @@ class AnalyticsScreen extends ConsumerWidget {
                                         showTitles: true,
                                         reservedSize: 28,
                                         getTitlesWidget: (val, meta) {
-                                          return Text('${val.toInt()}h', style: const TextStyle(color: AppColors.textMuted, fontSize: 10));
+                                          return Text('${val.toInt()}h',
+                                              style: const TextStyle(
+                                                  color: AppColors.textMuted,
+                                                  fontSize: 10));
                                         },
                                       ),
                                     ),
-                                    topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                                    rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                    topTitles: const AxisTitles(
+                                        sideTitles:
+                                            SideTitles(showTitles: false)),
+                                    rightTitles: const AxisTitles(
+                                        sideTitles:
+                                            SideTitles(showTitles: false)),
                                   ),
                                   gridData: FlGridData(
                                     show: true,
                                     drawVerticalLine: false,
-                                    getDrawingHorizontalLine: (val) => const FlLine(color: AppColors.borderColor, strokeWidth: 0.8),
+                                    getDrawingHorizontalLine: (val) =>
+                                        const FlLine(
+                                            color: AppColors.borderColor,
+                                            strokeWidth: 0.8),
                                   ),
                                   borderData: FlBorderData(show: false),
                                   barGroups: [
@@ -219,15 +248,22 @@ class AnalyticsScreen extends ConsumerWidget {
                               ),
                             ),
                             const SizedBox(height: 14),
-                            _buildDomainProgress('Networking & Packet Analysis', 0.65, AppColors.cyberCyan),
+                            _buildDomainProgress('Networking & Packet Analysis',
+                                0.65, AppColors.cyberCyan),
                             const SizedBox(height: 10),
-                            _buildDomainProgress('Linux & Shell Scripting', 0.55, AppColors.matrixGreen),
+                            _buildDomainProgress('Linux & Shell Scripting',
+                                0.55, AppColors.matrixGreen),
                             const SizedBox(height: 10),
-                            _buildDomainProgress('Web Security & OWASP Top 10', 0.40, AppColors.neonPurple),
+                            _buildDomainProgress('Web Security & OWASP Top 10',
+                                0.40, AppColors.neonPurple),
                             const SizedBox(height: 10),
-                            _buildDomainProgress('SOC Operations & Log Telemetry', 0.30, AppColors.neonYellow),
+                            _buildDomainProgress(
+                                'SOC Operations & Log Telemetry',
+                                0.30,
+                                AppColors.neonYellow),
                             const SizedBox(height: 10),
-                            _buildDomainProgress('Offensive Exploit Crafting', 0.20, AppColors.neonRed),
+                            _buildDomainProgress('Offensive Exploit Crafting',
+                                0.20, AppColors.neonRed),
                           ],
                         ),
                       ).animate().fadeIn(duration: 350.ms),
@@ -278,14 +314,20 @@ class AnalyticsScreen extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: const TextStyle(color: AppColors.textMuted, fontSize: 11)),
+              Text(title,
+                  style: const TextStyle(
+                      color: AppColors.textMuted, fontSize: 11)),
               Icon(icon, color: color, size: 16),
             ],
           ),
           const SizedBox(height: 6),
-          Text(value, style: TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(value,
+              style: TextStyle(
+                  color: color, fontSize: 20, fontWeight: FontWeight.bold)),
           const SizedBox(height: 2),
-          Text(subtitle, style: const TextStyle(color: AppColors.textSecondary, fontSize: 11)),
+          Text(subtitle,
+              style: const TextStyle(
+                  color: AppColors.textSecondary, fontSize: 11)),
         ],
       ),
     );
@@ -298,8 +340,14 @@ class AnalyticsScreen extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(name, style: const TextStyle(color: AppColors.textPrimary, fontSize: 13, fontWeight: FontWeight.w500)),
-            Text('${(progress * 100).toInt()}%', style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.bold)),
+            Text(name,
+                style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500)),
+            Text('${(progress * 100).toInt()}%',
+                style: TextStyle(
+                    color: color, fontSize: 12, fontWeight: FontWeight.bold)),
           ],
         ),
         const SizedBox(height: 6),

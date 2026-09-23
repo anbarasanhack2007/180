@@ -27,7 +27,8 @@ class TestDetailScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary),
+          icon: const Icon(Icons.arrow_back_ios_new,
+              color: AppColors.textPrimary),
           onPressed: () => context.pop(),
         ),
         title: const Text('TEST DETAILS'),
@@ -36,22 +37,38 @@ class TestDetailScreen extends ConsumerWidget {
       body: CyberBackground(
         child: async.when(
           data: (test) {
-            if (test == null) return const Center(child: Text('Test not found', style: TextStyle(color: AppColors.textSecondary)));
+            if (test == null) {
+              return const Center(
+                  child: Text('Test not found',
+                      style: TextStyle(color: AppColors.textSecondary)));
+            }
             final questions = test['questions'] as List<dynamic>? ?? [];
             return Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(test['title'] as String? ?? '', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.textPrimary, fontWeight: FontWeight.w800)),
+                  Text(test['title'] as String? ?? '',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w800)),
                   const SizedBox(height: 8),
-                  Text(test['description'] as String? ?? '', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary)),
+                  Text(test['description'] as String? ?? '',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: AppColors.textSecondary)),
                   const SizedBox(height: 16),
                   Row(
                     children: [
-                      _infoChip('${questions.length} Questions', AppColors.cyberCyan),
+                      _infoChip(
+                          '${questions.length} Questions', AppColors.cyberCyan),
                       const SizedBox(width: 8),
-                      _infoChip(test['test_type'] as String? ?? '', AppColors.cyberPurple),
+                      _infoChip(test['test_type'] as String? ?? '',
+                          AppColors.cyberPurple),
                     ],
                   ),
                   const Spacer(),
@@ -59,10 +76,13 @@ class TestDetailScreen extends ConsumerWidget {
                     width: double.infinity,
                     height: 52,
                     child: ElevatedButton.icon(
-                      onPressed: () => context.push('${AppRoutes.tests}/$testId/attempt'),
+                      onPressed: () =>
+                          context.push('${AppRoutes.tests}/$testId/attempt'),
                       icon: const Icon(Icons.play_arrow),
                       label: const Text('START TEST'),
-                      style: ElevatedButton.styleFrom(backgroundColor: AppColors.cyberCyan, foregroundColor: AppColors.bgPrimary),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.cyberCyan,
+                          foregroundColor: AppColors.bgPrimary),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -70,16 +90,23 @@ class TestDetailScreen extends ConsumerWidget {
               ),
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator(color: AppColors.cyberCyan)),
-          error: (e, _) => Center(child: Text('Error loading test', style: const TextStyle(color: AppColors.cyberRed))),
+          loading: () => const Center(
+              child: CircularProgressIndicator(color: AppColors.cyberCyan)),
+          error: (e, _) => Center(
+              child: Text('Error loading test',
+                  style: const TextStyle(color: AppColors.cyberRed))),
         ),
       ),
     );
   }
 
   Widget _infoChip(String text, Color color) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-    decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(8)),
-    child: Text(text, style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.w600)),
-  );
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.12),
+            borderRadius: BorderRadius.circular(8)),
+        child: Text(text,
+            style: TextStyle(
+                color: color, fontSize: 12, fontWeight: FontWeight.w600)),
+      );
 }

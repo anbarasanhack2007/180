@@ -120,7 +120,7 @@ class AppTheme {
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: AppColors.bgSurface,
-        indicatorColor: AppColors.cyberCyan.withOpacity(0.15),
+        indicatorColor: AppColors.cyberCyan.withValues(alpha: 0.15),
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
             return const IconThemeData(color: AppColors.cyberCyan, size: 24);
@@ -153,7 +153,7 @@ class AppTheme {
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.cyberCyan.withOpacity(0.3);
+            return AppColors.cyberCyan.withValues(alpha: 0.3);
           }
           return AppColors.bgCard;
         }),
@@ -169,7 +169,7 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.bgCard,
-        selectedColor: AppColors.cyberCyan.withOpacity(0.2),
+        selectedColor: AppColors.cyberCyan.withValues(alpha: 0.2),
         labelStyle: const TextStyle(color: AppColors.textPrimary),
         side: const BorderSide(color: AppColors.borderColor),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

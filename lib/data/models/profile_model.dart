@@ -52,8 +52,7 @@ class ProfileModel extends UserProfile {
       if (githubUrl != null) 'github_url': githubUrl,
       if (linkedinUrl != null) 'linkedin_url': linkedinUrl,
       if (portfolioUrl != null) 'portfolio_url': portfolioUrl,
-      if (cybersecurityLevel != null)
-        'cybersecurity_level': cybersecurityLevel,
+      if (cybersecurityLevel != null) 'cybersecurity_level': cybersecurityLevel,
     };
   }
 }

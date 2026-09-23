@@ -6,7 +6,6 @@ import '../providers/dashboard_providers.dart';
 import '../../auth/providers/auth_providers.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/constants/app_routes.dart';
-import '../../../core/constants/app_constants.dart';
 import '../../../core/widgets/cyber_background.dart';
 import '../../../core/widgets/cyber_button.dart';
 import '../widgets/stat_grid.dart';
@@ -84,18 +83,19 @@ class DashboardScreen extends ConsumerWidget {
                     children: [
                       Text(
                         '$greeting,',
-                        style:
-                            Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: AppColors.textSecondary,
-                                ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
                       ),
                       Text(
                         name,
-                        style:
-                            Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                  color: AppColors.textPrimary,
-                                  fontWeight: FontWeight.w800,
-                                ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w800,
+                            ),
                       ),
                     ],
                   ).animate().fadeIn(duration: 400.ms),
@@ -103,7 +103,8 @@ class DashboardScreen extends ConsumerWidget {
 
                   // Day progress banner
                   dayAsync.when(
-                    data: (day) => _buildDayBanner(context, day, summaryAsync.valueOrNull?.completedDays ?? 0),
+                    data: (day) => _buildDayBanner(context, day,
+                        summaryAsync.valueOrNull?.completedDays ?? 0),
                     loading: () => _loadingBanner(),
                     error: (_, __) => _buildDayBanner(context, 1, 0),
                   ),
@@ -167,8 +168,7 @@ class DashboardScreen extends ConsumerWidget {
                         CyberButton(
                           label: "START TODAY'S MISSION",
                           icon: Icons.play_arrow,
-                          onPressed: () =>
-                              context.push('/home/mission/$day'),
+                          onPressed: () => context.push('/home/mission/$day'),
                         ),
                         const SizedBox(height: 10),
                         OutlinedButton.icon(
@@ -215,10 +215,10 @@ class DashboardScreen extends ConsumerWidget {
           colors: [Color(0xFF0D1626), Color(0xFF111C2E)],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.cyberCyan.withOpacity(0.3)),
+        border: Border.all(color: AppColors.cyberCyan.withValues(alpha: 0.3)),
         boxShadow: [
           BoxShadow(
-            color: AppColors.cyberCyan.withOpacity(0.08),
+            color: AppColors.cyberCyan.withValues(alpha: 0.08),
             blurRadius: 20,
             spreadRadius: 2,
           ),
@@ -308,10 +308,30 @@ class DashboardScreen extends ConsumerWidget {
     final links = [
       (Icons.science_outlined, 'Labs', AppRoutes.labs, AppColors.cyberBlue),
       (Icons.quiz_outlined, 'Tests', AppRoutes.tests, AppColors.cyberPurple),
-      (Icons.psychology_outlined, 'Skills', AppRoutes.skills, AppColors.cyberGreen),
-      (Icons.emoji_events_outlined, 'Awards', AppRoutes.achievements, AppColors.xpGold),
-      (Icons.record_voice_over_outlined, 'Interview', AppRoutes.interview, AppColors.cyberPink),
-      (Icons.analytics_outlined, 'Analytics', AppRoutes.analytics, AppColors.cyberOrange),
+      (
+        Icons.psychology_outlined,
+        'Skills',
+        AppRoutes.skills,
+        AppColors.cyberGreen
+      ),
+      (
+        Icons.emoji_events_outlined,
+        'Awards',
+        AppRoutes.achievements,
+        AppColors.xpGold
+      ),
+      (
+        Icons.record_voice_over_outlined,
+        'Interview',
+        AppRoutes.interview,
+        AppColors.cyberPink
+      ),
+      (
+        Icons.analytics_outlined,
+        'Analytics',
+        AppRoutes.analytics,
+        AppColors.cyberOrange
+      ),
     ];
     return GridView.builder(
       shrinkWrap: true,
@@ -331,7 +351,7 @@ class DashboardScreen extends ConsumerWidget {
             decoration: BoxDecoration(
               color: AppColors.bgCard,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: color.withOpacity(0.2)),
+              border: Border.all(color: color.withValues(alpha: 0.2)),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

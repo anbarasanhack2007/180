@@ -174,10 +174,10 @@ class _ProjectCard extends ConsumerWidget {
         decoration: BoxDecoration(
           color: AppColors.bgCard,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: color.withOpacity(0.25)),
+          border: Border.all(color: color.withValues(alpha: 0.25)),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.06),
+              color: color.withValues(alpha: 0.06),
               blurRadius: 12,
             ),
           ],
@@ -191,7 +191,7 @@ class _ProjectCard extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.15),
+                    color: color.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -205,7 +205,8 @@ class _ProjectCard extends ConsumerWidget {
                   ),
                 ),
                 const Spacer(),
-                _statusChip(context, project['status'] as String? ?? 'not_started'),
+                _statusChip(
+                    context, project['status'] as String? ?? 'not_started'),
               ],
             ),
             const SizedBox(height: 10),
@@ -316,7 +317,7 @@ class _ProjectCard extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(

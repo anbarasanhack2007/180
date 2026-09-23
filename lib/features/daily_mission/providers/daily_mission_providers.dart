@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/repositories/curriculum_repository.dart';
 import '../../../data/repositories/progress_repository.dart';
 import '../../../data/models/curriculum_models.dart';
-import '../../../domain/entities/progress.dart';
 
 // Fetch a specific day task with full details
 final dailyTaskDetailProvider =

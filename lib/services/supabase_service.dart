@@ -8,7 +8,8 @@ class SupabaseService {
 
   static bool get isInitialized {
     try {
-      return Supabase.instance.client != null;
+      Supabase.instance.client;
+      return true;
     } catch (_) {
       return false;
     }
@@ -69,28 +70,22 @@ class SupabaseService {
   }
 
   // Profiles
-  static SupabaseQueryBuilder get profiles =>
-      client.from('profiles');
+  static SupabaseQueryBuilder get profiles => client.from('profiles');
 
   // Settings
-  static SupabaseQueryBuilder get userSettings =>
-      client.from('user_settings');
+  static SupabaseQueryBuilder get userSettings => client.from('user_settings');
 
   // Curriculum
-  static SupabaseQueryBuilder get months =>
-      client.from('months');
+  static SupabaseQueryBuilder get months => client.from('months');
 
-  static SupabaseQueryBuilder get weeks =>
-      client.from('weeks');
+  static SupabaseQueryBuilder get weeks => client.from('weeks');
 
-  static SupabaseQueryBuilder get dailyTasks =>
-      client.from('daily_tasks');
+  static SupabaseQueryBuilder get dailyTasks => client.from('daily_tasks');
 
   static SupabaseQueryBuilder get checklistItems =>
       client.from('daily_checklist_items');
 
-  static SupabaseQueryBuilder get resources =>
-      client.from('resources');
+  static SupabaseQueryBuilder get resources => client.from('resources');
 
   static SupabaseQueryBuilder get dailyResources =>
       client.from('daily_resources');
@@ -102,8 +97,7 @@ class SupabaseService {
   static SupabaseQueryBuilder get checklistProgress =>
       client.from('checklist_progress');
 
-  static SupabaseQueryBuilder get streaks =>
-      client.from('streaks');
+  static SupabaseQueryBuilder get streaks => client.from('streaks');
 
   static SupabaseQueryBuilder get xpTransactions =>
       client.from('xp_transactions');
@@ -112,48 +106,37 @@ class SupabaseService {
       client.from('study_sessions');
 
   // Projects
-  static SupabaseQueryBuilder get projects =>
-      client.from('projects');
+  static SupabaseQueryBuilder get projects => client.from('projects');
 
-  static SupabaseQueryBuilder get projectTasks =>
-      client.from('project_tasks');
+  static SupabaseQueryBuilder get projectTasks => client.from('project_tasks');
 
   static SupabaseQueryBuilder get userProjectProgress =>
       client.from('user_project_progress');
 
   // Skills
-  static SupabaseQueryBuilder get skills =>
-      client.from('skills');
+  static SupabaseQueryBuilder get skills => client.from('skills');
 
-  static SupabaseQueryBuilder get userSkills =>
-      client.from('user_skills');
+  static SupabaseQueryBuilder get userSkills => client.from('user_skills');
 
   // Achievements
-  static SupabaseQueryBuilder get achievements =>
-      client.from('achievements');
+  static SupabaseQueryBuilder get achievements => client.from('achievements');
 
   static SupabaseQueryBuilder get userAchievements =>
       client.from('user_achievements');
 
   // Notes & Bookmarks
-  static SupabaseQueryBuilder get notes =>
-      client.from('notes');
+  static SupabaseQueryBuilder get notes => client.from('notes');
 
-  static SupabaseQueryBuilder get bookmarks =>
-      client.from('bookmarks');
+  static SupabaseQueryBuilder get bookmarks => client.from('bookmarks');
 
   // Tests
-  static SupabaseQueryBuilder get tests =>
-      client.from('tests');
+  static SupabaseQueryBuilder get tests => client.from('tests');
 
-  static SupabaseQueryBuilder get questions =>
-      client.from('questions');
+  static SupabaseQueryBuilder get questions => client.from('questions');
 
-  static SupabaseQueryBuilder get testAttempts =>
-      client.from('test_attempts');
+  static SupabaseQueryBuilder get testAttempts => client.from('test_attempts');
 
-  static SupabaseQueryBuilder get testAnswers =>
-      client.from('test_answers');
+  static SupabaseQueryBuilder get testAnswers => client.from('test_answers');
 
   // Interview
   static SupabaseQueryBuilder get interviewQuestions =>

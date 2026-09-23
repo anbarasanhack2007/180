@@ -20,7 +20,7 @@ class TestAttemptScreen extends ConsumerStatefulWidget {
 class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
   List<Map<String, dynamic>> _questions = [];
   int _currentIndex = 0;
-  Map<String, dynamic> _answers = {};
+  final Map<String, dynamic> _answers = {};
   bool _loading = true;
   bool _submitting = false;
   String? _attemptId;
@@ -44,13 +44,17 @@ class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
       final userId = ref.read(currentProfileProvider).valueOrNull?.id;
       if (userId != null) {
         _startedAt = DateTime.now();
-        final attempt = await SupabaseService.testAttempts.insert({
-          'user_id': userId,
-          'test_id': widget.testId,
-          'score': 0,
-          'total_points': list.fold<int>(0, (sum, q) => sum + (q['points'] as int? ?? 1)),
-          'started_at': _startedAt!.toIso8601String(),
-        }).select().single();
+        final attempt = await SupabaseService.testAttempts
+            .insert({
+              'user_id': userId,
+              'test_id': widget.testId,
+              'score': 0,
+              'total_points': list.fold<int>(
+                  0, (sum, q) => sum + (q['points'] as int? ?? 1)),
+              'started_at': _startedAt!.toIso8601String(),
+            })
+            .select()
+            .single();
         _attemptId = attempt['id'] as String;
       }
       setState(() {
@@ -110,7 +114,8 @@ class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
       setState(() => _submitting = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error submitting: ${e.toString()}'),
+          SnackBar(
+              content: Text('Error submitting: ${e.toString()}'),
               backgroundColor: AppColors.cyberRed),
         );
       }
@@ -128,14 +133,18 @@ class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
     if (_loading) {
       return const Scaffold(
         backgroundColor: AppColors.bgPrimary,
-        body: Center(child: CircularProgressIndicator(color: AppColors.cyberCyan)),
+        body: Center(
+            child: CircularProgressIndicator(color: AppColors.cyberCyan)),
       );
     }
     if (_questions.isEmpty) {
       return Scaffold(
         backgroundColor: AppColors.bgPrimary,
-        appBar: AppBar(backgroundColor: Colors.transparent, leading: BackButton()),
-        body: const Center(child: Text('No questions found', style: TextStyle(color: AppColors.textSecondary))),
+        appBar:
+            AppBar(backgroundColor: Colors.transparent, leading: BackButton()),
+        body: const Center(
+            child: Text('No questions found',
+                style: TextStyle(color: AppColors.textSecondary))),
       );
     }
 
@@ -153,26 +162,30 @@ class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
             children: [
               // Header
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Column(
                   children: [
                     Row(
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.close, color: AppColors.textPrimary),
+                          icon: const Icon(Icons.close,
+                              color: AppColors.textPrimary),
                           onPressed: () => context.pop(),
                         ),
                         Expanded(
                           child: LinearProgressIndicator(
                             value: progress,
                             backgroundColor: AppColors.progressBg,
-                            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.cyberCyan),
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                AppColors.cyberCyan),
                             minHeight: 6,
                           ),
                         ),
                         const SizedBox(width: 8),
                         Text('${_currentIndex + 1}/${_questions.length}',
-                            style: const TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+                            style: const TextStyle(
+                                color: AppColors.textSecondary, fontSize: 13)),
                       ],
                     ),
                   ],
@@ -186,10 +199,18 @@ class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Question ${_currentIndex + 1}',
-                          style: const TextStyle(color: AppColors.cyberCyan, fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 1)),
+                          style: const TextStyle(
+                              color: AppColors.cyberCyan,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 1)),
                       const SizedBox(height: 12),
                       Text(q['question'] as String? ?? '',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary, height: 1.5)),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(
+                                  color: AppColors.textPrimary, height: 1.5)),
                       const SizedBox(height: 24),
                       // Options
                       ...options.asMap().entries.map((e) {
@@ -202,26 +223,39 @@ class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
                             margin: const EdgeInsets.only(bottom: 10),
                             padding: const EdgeInsets.all(14),
                             decoration: BoxDecoration(
-                              color: selected ? AppColors.cyberCyan.withOpacity(0.1) : AppColors.bgCard,
+                              color: selected
+                                  ? AppColors.cyberCyan.withValues(alpha: 0.1)
+                                  : AppColors.bgCard,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: selected ? AppColors.cyberCyan : AppColors.borderColor,
+                                color: selected
+                                    ? AppColors.cyberCyan
+                                    : AppColors.borderColor,
                                 width: selected ? 1.5 : 1,
                               ),
                             ),
                             child: Row(
                               children: [
                                 Icon(
-                                  selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                                  color: selected ? AppColors.cyberCyan : AppColors.textHint,
+                                  selected
+                                      ? Icons.radio_button_checked
+                                      : Icons.radio_button_unchecked,
+                                  color: selected
+                                      ? AppColors.cyberCyan
+                                      : AppColors.textHint,
                                   size: 20,
                                 ),
                                 const SizedBox(width: 12),
-                                Expanded(child: Text(opt,
-                                    style: TextStyle(
-                                      color: selected ? AppColors.cyberCyan : AppColors.textPrimary,
-                                      fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-                                    ))),
+                                Expanded(
+                                    child: Text(opt,
+                                        style: TextStyle(
+                                          color: selected
+                                              ? AppColors.cyberCyan
+                                              : AppColors.textPrimary,
+                                          fontWeight: selected
+                                              ? FontWeight.w600
+                                              : FontWeight.w400,
+                                        ))),
                               ],
                             ),
                           ),
@@ -248,21 +282,29 @@ class _TestAttemptScreenState extends ConsumerState<TestAttemptScreen> {
                     Expanded(
                       flex: 2,
                       child: ElevatedButton(
-                        onPressed: _submitting ? null : () {
-                          if (isLast) {
-                            _submit();
-                          } else {
-                            setState(() => _currentIndex++);
-                          }
-                        },
+                        onPressed: _submitting
+                            ? null
+                            : () {
+                                if (isLast) {
+                                  _submit();
+                                } else {
+                                  setState(() => _currentIndex++);
+                                }
+                              },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.cyberCyan,
                           foregroundColor: AppColors.bgPrimary,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
                         child: _submitting
-                            ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.bgPrimary))
-                            : Text(isLast ? 'SUBMIT TEST' : 'NEXT →', style: const TextStyle(fontWeight: FontWeight.w700)),
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                    strokeWidth: 2, color: AppColors.bgPrimary))
+                            : Text(isLast ? 'SUBMIT TEST' : 'NEXT →',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700)),
                       ),
                     ),
                   ],

@@ -80,7 +80,7 @@ class CyberCard extends StatelessWidget {
           boxShadow: glowColor != null
               ? [
                   BoxShadow(
-                    color: glowColor!.withOpacity(0.12),
+                    color: glowColor!.withValues(alpha: 0.12),
                     blurRadius: 16,
                     spreadRadius: 2,
                   ),
@@ -182,9 +182,9 @@ class CyberChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: chipColor.withOpacity(0.12),
+        color: chipColor.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: chipColor.withOpacity(0.3)),
+        border: Border.all(color: chipColor.withValues(alpha: 0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -254,7 +254,7 @@ class _LoadingSkeletonState extends State<LoadingSkeleton>
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            color: AppColors.bgCard.withOpacity(_animation.value + 0.3),
+            color: AppColors.bgCard.withValues(alpha: _animation.value + 0.3),
             borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
         );

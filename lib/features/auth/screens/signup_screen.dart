@@ -109,7 +109,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                         ),
                   ).animate().fadeIn(delay: 100.ms),
                   const SizedBox(height: 40),
-
                   CyberTextField(
                     controller: _nameController,
                     label: 'Full Name',
@@ -119,7 +118,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                         (v == null || v.isEmpty) ? 'Name is required' : null,
                   ).animate().fadeIn(delay: 150.ms),
                   const SizedBox(height: 16),
-
                   CyberTextField(
                     controller: _emailController,
                     label: 'Email',
@@ -133,7 +131,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     },
                   ).animate().fadeIn(delay: 200.ms),
                   const SizedBox(height: 16),
-
                   CyberTextField(
                     controller: _passwordController,
                     label: 'Password',
@@ -159,7 +156,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     },
                   ).animate().fadeIn(delay: 250.ms),
                   const SizedBox(height: 16),
-
                   CyberTextField(
                     controller: _confirmController,
                     label: 'Confirm Password',
@@ -187,7 +183,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     },
                   ).animate().fadeIn(delay: 300.ms),
                   const SizedBox(height: 32),
-
                   CyberButton(
                     label: 'INITIALIZE SYSTEM',
                     icon: Icons.rocket_launch_outlined,
@@ -195,7 +190,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     onPressed: _signUp,
                   ).animate().fadeIn(delay: 350.ms),
                   const SizedBox(height: 24),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

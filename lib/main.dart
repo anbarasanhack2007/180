@@ -41,7 +41,7 @@ See docs/SUPABASE_SETUP.md for full instructions.
   } else {
     await Supabase.initialize(
       url: supabaseUrl,
-      anonKey: supabaseAnonKey,
+      publishableKey: supabaseAnonKey,
     );
   }
 

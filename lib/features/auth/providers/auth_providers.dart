@@ -38,6 +38,10 @@ class CurrentProfileNotifier extends AsyncNotifier<UserProfile?> {
     final updated = await repo.updateProfile(profile);
     state = AsyncData(updated);
   }
+
+  void clear() {
+    state = const AsyncData(null);
+  }
 }
 
 // Auth actions provider
@@ -74,7 +78,7 @@ class AuthActions {
 
   Future<void> signOut() async {
     await _repo.signOut();
-    _ref.read(currentProfileProvider.notifier).state = const AsyncData(null);
+    _ref.read(currentProfileProvider.notifier).clear();
   }
 
   Future<void> resetPassword(String email) async {

@@ -37,7 +37,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     {
       'type': 'mission',
       'title': 'Day 35: Linux File Permissions, SUID & Capabilities',
-      'subtitle': 'chmod, chown, SUID/SGID bits and privilege escalation vectors',
+      'subtitle':
+          'chmod, chown, SUID/SGID bits and privilege escalation vectors',
       'day_number': 35,
       'category': 'Missions',
     },
@@ -110,10 +111,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final scopes = ['All', 'Missions', 'Projects', 'Labs', 'Interview'];
 
     final results = _masterIndex.where((item) {
-      final matchesScope = _selectedScope == 'All' || item['category'] == _selectedScope;
+      final matchesScope =
+          _selectedScope == 'All' || item['category'] == _selectedScope;
       final matchesQuery = _query.isEmpty ||
-          item['title'].toString().toLowerCase().contains(_query.toLowerCase()) ||
-          item['subtitle'].toString().toLowerCase().contains(_query.toLowerCase());
+          item['title']
+              .toString()
+              .toLowerCase()
+              .contains(_query.toLowerCase()) ||
+          item['subtitle']
+              .toString()
+              .toLowerCase()
+              .contains(_query.toLowerCase());
       return matchesScope && matchesQuery;
     }).toList();
 
@@ -130,7 +138,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     Expanded(
@@ -141,11 +150,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         style: const TextStyle(color: AppColors.textPrimary),
                         decoration: InputDecoration(
                           hintText: 'Search curriculum, projects, labs...',
-                          hintStyle: const TextStyle(color: AppColors.textMuted),
-                          prefixIcon: const Icon(Icons.search, color: AppColors.cyberCyan),
+                          hintStyle:
+                              const TextStyle(color: AppColors.textMuted),
+                          prefixIcon: const Icon(Icons.search,
+                              color: AppColors.cyberCyan),
                           suffixIcon: _query.isNotEmpty
                               ? IconButton(
-                                  icon: const Icon(Icons.clear, color: AppColors.textMuted),
+                                  icon: const Icon(Icons.clear,
+                                      color: AppColors.textMuted),
                                   onPressed: () {
                                     _searchController.clear();
                                     setState(() => _query = '');
@@ -154,10 +166,20 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               : null,
                           filled: true,
                           fillColor: AppColors.bgCard,
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.borderColor)),
-                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.borderColor)),
-                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.cyberCyan)),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 10),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                  color: AppColors.borderColor)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                  color: AppColors.borderColor)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide:
+                                  const BorderSide(color: AppColors.cyberCyan)),
                         ),
                       ),
                     ),
@@ -182,11 +204,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       selectedColor: AppColors.cyberCyan.withValues(alpha: 0.2),
                       backgroundColor: AppColors.bgCard,
                       labelStyle: TextStyle(
-                        color: isSelected ? AppColors.cyberCyan : AppColors.textSecondary,
-                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                        color: isSelected
+                            ? AppColors.cyberCyan
+                            : AppColors.textSecondary,
+                        fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal,
                         fontSize: 12,
                       ),
-                      side: BorderSide(color: isSelected ? AppColors.cyberCyan : AppColors.borderColor),
+                      side: BorderSide(
+                          color: isSelected
+                              ? AppColors.cyberCyan
+                              : AppColors.borderColor),
                       onSelected: (_) => setState(() => _selectedScope = scope),
                     );
                   },
@@ -200,7 +228,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   '${results.length} INTEL NODES FOUND',
-                  style: const TextStyle(color: AppColors.cyberCyan, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.2),
+                  style: const TextStyle(
+                      color: AppColors.cyberCyan,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2),
                 ),
               ),
 
@@ -212,14 +244,20 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.search_off, size: 56, color: AppColors.textMuted),
+                            const Icon(Icons.search_off,
+                                size: 56, color: AppColors.textMuted),
                             const SizedBox(height: 12),
-                            Text('No matching intel found', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary)),
+                            Text('No matching intel found',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(color: AppColors.textSecondary)),
                           ],
                         ),
                       )
                     : ListView.separated(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
                         itemCount: results.length,
                         separatorBuilder: (_, __) => const SizedBox(height: 10),
                         itemBuilder: (context, index) {
@@ -245,9 +283,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           return InkWell(
                             onTap: () {
                               if (item['day_number'] != null) {
-                                context.push('${AppRoutes.home}/mission/${item['day_number']}');
+                                context.push(
+                                    '${AppRoutes.home}/mission/${item['day_number']}');
                               } else if (item['project_id'] != null) {
-                                context.push('${AppRoutes.projects}/${item['project_id']}');
+                                context.push(
+                                    '${AppRoutes.projects}/${item['project_id']}');
                               } else if (item['route'] != null) {
                                 context.push(item['route']);
                               }
@@ -258,7 +298,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               decoration: BoxDecoration(
                                 color: AppColors.bgCard,
                                 borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: AppColors.borderColor),
+                                border:
+                                    Border.all(color: AppColors.borderColor),
                               ),
                               child: Row(
                                 children: [
@@ -268,30 +309,40 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                       color: typeColor.withValues(alpha: 0.15),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: Icon(icon, color: typeColor, size: 18),
+                                    child:
+                                        Icon(icon, color: typeColor, size: 18),
                                   ),
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           item['title'] ?? '',
-                                          style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600, fontSize: 14),
+                                          style: const TextStyle(
+                                              color: AppColors.textPrimary,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14),
                                         ),
                                         const SizedBox(height: 2),
                                         Text(
                                           item['subtitle'] ?? '',
-                                          style: const TextStyle(color: AppColors.textMuted, fontSize: 12),
+                                          style: const TextStyle(
+                                              color: AppColors.textMuted,
+                                              fontSize: 12),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  const Icon(Icons.arrow_forward_ios, size: 14, color: AppColors.textMuted),
+                                  const Icon(Icons.arrow_forward_ios,
+                                      size: 14, color: AppColors.textMuted),
                                 ],
                               ),
                             ),
-                          ).animate().fadeIn(duration: 150.ms, delay: (index * 20).ms);
+                          )
+                              .animate()
+                              .fadeIn(duration: 150.ms, delay: (index * 20).ms);
                         },
                       ),
               ),

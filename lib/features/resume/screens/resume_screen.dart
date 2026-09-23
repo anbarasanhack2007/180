@@ -16,17 +16,22 @@ class ResumeScreen extends ConsumerStatefulWidget {
 
 class _ResumeScreenState extends ConsumerState<ResumeScreen> {
   final _nameController = TextEditingController(text: 'Anbarasan M');
-  final _emailController = TextEditingController(text: 'anbarasan.cyber@example.com');
+  final _emailController =
+      TextEditingController(text: 'anbarasan.cyber@example.com');
   final _phoneController = TextEditingController(text: '+91 98765 43210');
-  final _githubController = TextEditingController(text: 'https://github.com/anbarasan-sec');
+  final _githubController =
+      TextEditingController(text: 'https://github.com/anbarasan-sec');
   final _summaryController = TextEditingController(
-    text: 'Dedicated 2nd-year B.Tech Cybersecurity student with intensive hands-on experience in network packet analysis, vulnerability assessment, SIEM log monitoring, and web application penetration testing. Proven ability to build automated security tooling in Python and dissect complex threat telemetry.',
+    text:
+        'Dedicated 2nd-year B.Tech Cybersecurity student with intensive hands-on experience in network packet analysis, vulnerability assessment, SIEM log monitoring, and web application penetration testing. Proven ability to build automated security tooling in Python and dissect complex threat telemetry.',
   );
   final _skillsController = TextEditingController(
-    text: 'Wireshark, Nmap, Burp Suite, Metasploit, Splunk, Linux / Bash scripting, Python (Scapy, Sockets), OWASP Top 10, TCP/IP & Network Architecture, Snort IDS.',
+    text:
+        'Wireshark, Nmap, Burp Suite, Metasploit, Splunk, Linux / Bash scripting, Python (Scapy, Sockets), OWASP Top 10, TCP/IP & Network Architecture, Snort IDS.',
   );
   final _educationController = TextEditingController(
-    text: 'B.Tech in Cybersecurity, Expected Graduation: 2028\\nRelevant Coursework: Computer Networks, Cryptography, Operating Systems, Ethical Hacking.',
+    text:
+        'B.Tech in Cybersecurity, Expected Graduation: 2028\\nRelevant Coursework: Computer Networks, Cryptography, Operating Systems, Ethical Hacking.',
   );
 
   bool _isExporting = false;
@@ -77,47 +82,100 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                 pw.SizedBox(height: 4),
                 pw.Text(
                   '${_emailController.text} | ${_phoneController.text} | ${_githubController.text}',
-                  style: const pw.TextStyle(fontSize: 10, color: PdfColors.grey700),
+                  style: const pw.TextStyle(
+                      fontSize: 10, color: PdfColors.grey700),
                 ),
                 pw.SizedBox(height: 12),
                 pw.Divider(color: PdfColors.grey400, thickness: 1),
                 pw.SizedBox(height: 10),
 
                 // Professional Summary
-                pw.Text('PROFESSIONAL SUMMARY', style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold, color: PdfColors.blueGrey800)),
+                pw.Text('PROFESSIONAL SUMMARY',
+                    style: pw.TextStyle(
+                        fontSize: 12,
+                        fontWeight: pw.FontWeight.bold,
+                        color: PdfColors.blueGrey800)),
                 pw.SizedBox(height: 4),
-                pw.Text(_summaryController.text, style: const pw.TextStyle(fontSize: 10, color: PdfColors.black, lineSpacing: 1.3)),
+                pw.Text(_summaryController.text,
+                    style: const pw.TextStyle(
+                        fontSize: 10,
+                        color: PdfColors.black,
+                        lineSpacing: 1.3)),
                 pw.SizedBox(height: 14),
 
                 // Technical Arsenal
-                pw.Text('TECHNICAL ARSENAL & SKILLS', style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold, color: PdfColors.blueGrey800)),
+                pw.Text('TECHNICAL ARSENAL & SKILLS',
+                    style: pw.TextStyle(
+                        fontSize: 12,
+                        fontWeight: pw.FontWeight.bold,
+                        color: PdfColors.blueGrey800)),
                 pw.SizedBox(height: 4),
-                pw.Text(_skillsController.text, style: const pw.TextStyle(fontSize: 10, color: PdfColors.black, lineSpacing: 1.3)),
+                pw.Text(_skillsController.text,
+                    style: const pw.TextStyle(
+                        fontSize: 10,
+                        color: PdfColors.black,
+                        lineSpacing: 1.3)),
                 pw.SizedBox(height: 14),
 
                 // Capstone Projects
-                pw.Text('CYBERSECURITY CAPSTONE PROJECTS', style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold, color: PdfColors.blueGrey800)),
+                pw.Text('CYBERSECURITY CAPSTONE PROJECTS',
+                    style: pw.TextStyle(
+                        fontSize: 12,
+                        fontWeight: pw.FontWeight.bold,
+                        color: PdfColors.blueGrey800)),
                 pw.SizedBox(height: 6),
 
-                pw.Text('1. Network Packet Sniffer & Protocol Analyzer (Python, Scapy, Raw Sockets)', style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold)),
-                pw.Bullet(text: 'Developed raw-socket packet sniffer capturing TCP, UDP, ICMP, DNS payloads with automated anomaly detection.', style: const pw.TextStyle(fontSize: 9)),
-                pw.Bullet(text: 'Built export pipeline generating PCAP files for Wireshark inspection.', style: const pw.TextStyle(fontSize: 9)),
+                pw.Text(
+                    '1. Network Packet Sniffer & Protocol Analyzer (Python, Scapy, Raw Sockets)',
+                    style: pw.TextStyle(
+                        fontSize: 10, fontWeight: pw.FontWeight.bold)),
+                pw.Bullet(
+                    text:
+                        'Developed raw-socket packet sniffer capturing TCP, UDP, ICMP, DNS payloads with automated anomaly detection.',
+                    style: const pw.TextStyle(fontSize: 9)),
+                pw.Bullet(
+                    text:
+                        'Built export pipeline generating PCAP files for Wireshark inspection.',
+                    style: const pw.TextStyle(fontSize: 9)),
                 pw.SizedBox(height: 6),
 
-                pw.Text('2. Automated Port Scanner & Service Enumeration (Python, Nmap)', style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold)),
-                pw.Bullet(text: 'Created multi-threaded TCP SYN port scanner scanning 1000 ports in under 3 seconds with CVE correlation.', style: const pw.TextStyle(fontSize: 9)),
+                pw.Text(
+                    '2. Automated Port Scanner & Service Enumeration (Python, Nmap)',
+                    style: pw.TextStyle(
+                        fontSize: 10, fontWeight: pw.FontWeight.bold)),
+                pw.Bullet(
+                    text:
+                        'Created multi-threaded TCP SYN port scanner scanning 1000 ports in under 3 seconds with CVE correlation.',
+                    style: const pw.TextStyle(fontSize: 9)),
                 pw.SizedBox(height: 6),
 
-                pw.Text('3. SOC Log Analysis & SIEM Detection Pipeline (Splunk, Zeek)', style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold)),
-                pw.Bullet(text: 'Formulated custom SPL detection rules identifying SSH brute-force campaigns and data exfiltration patterns.', style: const pw.TextStyle(fontSize: 9)),
+                pw.Text(
+                    '3. SOC Log Analysis & SIEM Detection Pipeline (Splunk, Zeek)',
+                    style: pw.TextStyle(
+                        fontSize: 10, fontWeight: pw.FontWeight.bold)),
+                pw.Bullet(
+                    text:
+                        'Formulated custom SPL detection rules identifying SSH brute-force campaigns and data exfiltration patterns.',
+                    style: const pw.TextStyle(fontSize: 9)),
                 pw.SizedBox(height: 14),
 
                 // Education
-                pw.Text('EDUCATION & CREDENTIALS', style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold, color: PdfColors.blueGrey800)),
+                pw.Text('EDUCATION & CREDENTIALS',
+                    style: pw.TextStyle(
+                        fontSize: 12,
+                        fontWeight: pw.FontWeight.bold,
+                        color: PdfColors.blueGrey800)),
                 pw.SizedBox(height: 4),
-                pw.Text(_educationController.text, style: const pw.TextStyle(fontSize: 10, color: PdfColors.black, lineSpacing: 1.3)),
+                pw.Text(_educationController.text,
+                    style: const pw.TextStyle(
+                        fontSize: 10,
+                        color: PdfColors.black,
+                        lineSpacing: 1.3)),
                 pw.SizedBox(height: 6),
-                pw.Bullet(text: 'CyberSprint 180: Advanced Full-Stack Cybersecurity Mastery Curriculum', style: const pw.TextStyle(fontSize: 9)),
+                pw.Bullet(
+                    text:
+                        'CyberSprint 180: Advanced Full-Stack Cybersecurity Mastery Curriculum',
+                    style: const pw.TextStyle(fontSize: 9)),
               ],
             );
           },
@@ -126,7 +184,8 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
 
       await Printing.layoutPdf(
         onLayout: (PdfPageFormat format) async => doc.save(),
-        name: 'Cybersecurity_Resume_${_nameController.text.replaceAll(' ', '_')}.pdf',
+        name:
+            'Cybersecurity_Resume_${_nameController.text.replaceAll(' ', '_')}.pdf',
       );
     } catch (e) {
       if (mounted) {
@@ -153,7 +212,8 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -163,7 +223,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                         children: [
                           Text(
                             'CAREER WEAPON',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
                                   color: AppColors.cyberCyan,
                                   letterSpacing: 2.0,
                                   fontWeight: FontWeight.bold,
@@ -171,7 +234,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                           ),
                           Text(
                             'Resume Generator',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -185,14 +251,17 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                           ? const SizedBox(
                               width: 14,
                               height: 14,
-                              child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.bgPrimary),
+                              child: CircularProgressIndicator(
+                                  strokeWidth: 2, color: AppColors.bgPrimary),
                             )
                           : const Icon(Icons.print, size: 16),
-                      label: const Text('Export PDF', style: TextStyle(fontWeight: FontWeight.bold)),
+                      label: const Text('Export PDF',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.cyberCyan,
                         foregroundColor: AppColors.bgPrimary,
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 8),
                       ),
                     ),
                   ],
@@ -207,30 +276,35 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildSectionHeader('CONTACT & IDENTIFICATION'),
-                      _buildTextField(_nameController, 'Full Name', Icons.person),
+                      _buildTextField(
+                          _nameController, 'Full Name', Icons.person),
                       const SizedBox(height: 10),
                       Row(
                         children: [
-                          Expanded(child: _buildTextField(_emailController, 'Email', Icons.email)),
+                          Expanded(
+                              child: _buildTextField(
+                                  _emailController, 'Email', Icons.email)),
                           const SizedBox(width: 10),
-                          Expanded(child: _buildTextField(_phoneController, 'Phone', Icons.phone)),
+                          Expanded(
+                              child: _buildTextField(
+                                  _phoneController, 'Phone', Icons.phone)),
                         ],
                       ),
                       const SizedBox(height: 10),
-                      _buildTextField(_githubController, 'GitHub / Portfolio URL', Icons.link),
-
+                      _buildTextField(_githubController,
+                          'GitHub / Portfolio URL', Icons.link),
                       const SizedBox(height: 20),
                       _buildSectionHeader('PROFESSIONAL SUMMARY'),
-                      _buildTextArea(_summaryController, 'Summary Statement', 4),
-
+                      _buildTextArea(
+                          _summaryController, 'Summary Statement', 4),
                       const SizedBox(height: 20),
                       _buildSectionHeader('TECHNICAL ARSENAL'),
-                      _buildTextArea(_skillsController, 'Tools, Protocols & Frameworks', 3),
-
+                      _buildTextArea(_skillsController,
+                          'Tools, Protocols & Frameworks', 3),
                       const SizedBox(height: 20),
                       _buildSectionHeader('EDUCATION & ACADEMICS'),
-                      _buildTextArea(_educationController, 'Degree, College & Graduation', 3),
-
+                      _buildTextArea(_educationController,
+                          'Degree, College & Graduation', 3),
                       const SizedBox(height: 30),
                     ],
                   ),
@@ -258,7 +332,8 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String label, IconData icon) {
+  Widget _buildTextField(
+      TextEditingController controller, String label, IconData icon) {
     return TextField(
       controller: controller,
       style: const TextStyle(color: AppColors.textPrimary, fontSize: 14),
@@ -268,29 +343,44 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
         prefixIcon: Icon(icon, color: AppColors.cyberCyan, size: 18),
         filled: true,
         fillColor: AppColors.bgCard,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.borderColor)),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.borderColor)),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.cyberCyan)),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.borderColor)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.borderColor)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.cyberCyan)),
       ),
     );
   }
 
-  Widget _buildTextArea(TextEditingController controller, String label, int minLines) {
+  Widget _buildTextArea(
+      TextEditingController controller, String label, int minLines) {
     return TextField(
       controller: controller,
       maxLines: null,
       minLines: minLines,
-      style: const TextStyle(color: AppColors.textPrimary, fontSize: 13, height: 1.4),
+      style: const TextStyle(
+          color: AppColors.textPrimary, fontSize: 13, height: 1.4),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: const TextStyle(color: AppColors.textMuted, fontSize: 13),
         filled: true,
         fillColor: AppColors.bgCard,
         contentPadding: const EdgeInsets.all(14),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.borderColor)),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.borderColor)),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.cyberCyan)),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.borderColor)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.borderColor)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.cyberCyan)),
       ),
     );
   }

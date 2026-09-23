@@ -1,66 +1,50 @@
-name: CyberSprint 180 CI/CD
+name: Flutter CI/CD
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
-  analyze_and_test:
-    name: Code Analysis & Unit Tests
+  build:
+    name: Test and Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Codebase
+      # 1. Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      # 2. Setup Java 17 (required for Android build)
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
+          cache: 'gradle'
 
-      - name: Setup Flutter SDK
+      # 3. Setup Flutter (stable channel)
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           cache: true
 
+      # 4. Install project dependencies
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Static Code Analysis
+      # 5. Verify code formatting and run static analysis
+      - name: Run Static Analysis
         run: flutter analyze
 
-      - name: Run Test Suite
+      # 6. Run unit and widget test suite
+      - name: Run Tests
         run: flutter test
 
-  build_android:
-    name: Build Android APK
-    needs: analyze_and_test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Codebase
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Setup Flutter SDK
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Build Release APK
+      # 7. Build Android Release APK (using repository secrets)
+      - name: Build Android Release APK
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
@@ -69,31 +53,8 @@ jobs:
             --dart-define=SUPABASE_URL="${SUPABASE_URL}" \
             --dart-define=SUPABASE_ANON_KEY="${SUPABASE_ANON_KEY}"
 
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: cybersprint-180-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-
-  build_web:
-    name: Build Web App
-    needs: analyze_and_test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Codebase
-        uses: actions/checkout@v4
-
-      - name: Setup Flutter SDK
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Build Web Release
+      # 8. Build Flutter Web Release (using repository secrets)
+      - name: Build Flutter Web Release
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
@@ -102,8 +63,15 @@ jobs:
             --dart-define=SUPABASE_URL="${SUPABASE_URL}" \
             --dart-define=SUPABASE_ANON_KEY="${SUPABASE_ANON_KEY}"
 
-      - name: Upload Web Build Artifact
+      # 9. Upload Release Artifacts
+      - name: Upload Android APK
         uses: actions/upload-artifact@v4
         with:
-          name: cybersprint-180-web-dist
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-release
           path: build/web/

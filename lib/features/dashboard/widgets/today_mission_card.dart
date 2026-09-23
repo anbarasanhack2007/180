@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../data/models/curriculum_models.dart';
-import '../../../core/constants/app_constants.dart';
 
 class TodayMissionCard extends StatelessWidget {
   final DailyTaskModel task;
@@ -21,12 +20,12 @@ class TodayMissionCard extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              monthColor.withOpacity(0.08),
+              monthColor.withValues(alpha: 0.08),
               AppColors.bgCard,
             ],
           ),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: monthColor.withOpacity(0.3)),
+          border: Border.all(color: monthColor.withValues(alpha: 0.3)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,10 +33,10 @@ class TodayMissionCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: monthColor.withOpacity(0.15),
+                    color: monthColor.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -52,8 +51,8 @@ class TodayMissionCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: AppColors.bgElevated,
                     borderRadius: BorderRadius.circular(6),
@@ -70,10 +69,10 @@ class TodayMissionCard extends StatelessWidget {
                 if (task.isExam) ...[
                   const SizedBox(width: 6),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppColors.cyberRed.withOpacity(0.15),
+                      color: AppColors.cyberRed.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: const Text(
@@ -119,7 +118,8 @@ class TodayMissionCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 if (task.checklistItems.isNotEmpty) ...[
-                  const Icon(Icons.checklist, color: AppColors.textHint, size: 14),
+                  const Icon(Icons.checklist,
+                      color: AppColors.textHint, size: 14),
                   const SizedBox(width: 4),
                   Text(
                     '${task.checklistItems.length} tasks',

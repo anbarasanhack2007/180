@@ -17,7 +17,7 @@ class SettingsScreen extends ConsumerStatefulWidget {
 
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _dailyReminderEnabled = true;
-  String _reminderTime = '08:00 AM';
+  final String _reminderTime = '08:00 AM';
   bool _soundEffectsEnabled = true;
 
   @override
@@ -38,7 +38,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                      icon: const Icon(Icons.arrow_back,
+                          color: AppColors.textPrimary),
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const SizedBox(width: 8),
@@ -48,7 +49,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         children: [
                           Text(
                             'SYSTEM CONTROL',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
                                   color: AppColors.cyberCyan,
                                   letterSpacing: 2.0,
                                   fontWeight: FontWeight.bold,
@@ -56,7 +60,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           ),
                           Text(
                             'Settings & Preferences',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -85,8 +92,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         children: [
                           CircleAvatar(
                             radius: 28,
-                            backgroundColor: AppColors.cyberCyan.withValues(alpha: 0.15),
-                            child: const Icon(Icons.person, color: AppColors.cyberCyan, size: 30),
+                            backgroundColor:
+                                AppColors.cyberCyan.withValues(alpha: 0.15),
+                            child: const Icon(Icons.person,
+                                color: AppColors.cyberCyan, size: 30),
                           ),
                           const SizedBox(width: 14),
                           Expanded(
@@ -104,7 +113,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                                 const SizedBox(height: 2),
                                 Text(
                                   profile?.email ?? 'cadet@cybersprint.io',
-                                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                                  style: const TextStyle(
+                                      color: AppColors.textSecondary,
+                                      fontSize: 13),
                                 ),
                                 const SizedBox(height: 4),
                                 Row(
@@ -114,14 +125,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                                       height: 8,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: isConfigured ? AppColors.matrixGreen : AppColors.neonYellow,
+                                        color: isConfigured
+                                            ? AppColors.matrixGreen
+                                            : AppColors.neonYellow,
                                       ),
                                     ),
                                     const SizedBox(width: 6),
                                     Text(
-                                      isConfigured ? 'Connected to Cloud' : 'Local Standalone Mode',
+                                      isConfigured
+                                          ? 'Connected to Cloud'
+                                          : 'Local Standalone Mode',
                                       style: TextStyle(
-                                        color: isConfigured ? AppColors.matrixGreen : AppColors.neonYellow,
+                                        color: isConfigured
+                                            ? AppColors.matrixGreen
+                                            : AppColors.neonYellow,
                                         fontSize: 11,
                                       ),
                                     ),
@@ -140,17 +157,21 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     _buildSectionTitle('NOTIFICATIONS & SCHEDULE'),
                     _buildSwitchTile(
                       title: 'Daily Mission Reminder',
-                      subtitle: 'Alert at $_reminderTime to maintain daily streak',
+                      subtitle:
+                          'Alert at $_reminderTime to maintain daily streak',
                       value: _dailyReminderEnabled,
                       icon: Icons.notifications_active_outlined,
-                      onChanged: (val) => setState(() => _dailyReminderEnabled = val),
+                      onChanged: (val) =>
+                          setState(() => _dailyReminderEnabled = val),
                     ),
                     _buildSwitchTile(
                       title: 'Audio Alerts & Cyber SFX',
-                      subtitle: 'Play sound effects on task completion and XP grant',
+                      subtitle:
+                          'Play sound effects on task completion and XP grant',
                       value: _soundEffectsEnabled,
                       icon: Icons.volume_up_outlined,
-                      onChanged: (val) => setState(() => _soundEffectsEnabled = val),
+                      onChanged: (val) =>
+                          setState(() => _soundEffectsEnabled = val),
                     ),
 
                     const SizedBox(height: 24),
@@ -163,10 +184,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         borderRadius: BorderRadius.circular(12),
                         side: const BorderSide(color: AppColors.borderColor),
                       ),
-                      leading: const Icon(Icons.admin_panel_settings_outlined, color: AppColors.neonPurple),
-                      title: const Text('Faculty & Admin Console', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 14)),
-                      subtitle: const Text('Manage curriculum, exam questions, and student rosters', style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 14, color: AppColors.textMuted),
+                      leading: const Icon(Icons.admin_panel_settings_outlined,
+                          color: AppColors.neonPurple),
+                      title: const Text('Faculty & Admin Console',
+                          style: TextStyle(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14)),
+                      subtitle: const Text(
+                          'Manage curriculum, exam questions, and student rosters',
+                          style: TextStyle(
+                              color: AppColors.textMuted, fontSize: 12)),
+                      trailing: const Icon(Icons.arrow_forward_ios,
+                          size: 14, color: AppColors.textMuted),
                       onTap: () => context.push(AppRoutes.adminDashboard),
                     ),
 
@@ -180,13 +210,24 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         borderRadius: BorderRadius.circular(12),
                         side: const BorderSide(color: AppColors.borderColor),
                       ),
-                      leading: const Icon(Icons.cloud_sync_outlined, color: AppColors.cyberCyan),
-                      title: const Text('Force Cloud Sync', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 14)),
-                      subtitle: const Text('Sync offline cache with Supabase backend', style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
-                      trailing: const Icon(Icons.sync, color: AppColors.cyberCyan),
+                      leading: const Icon(Icons.cloud_sync_outlined,
+                          color: AppColors.cyberCyan),
+                      title: const Text('Force Cloud Sync',
+                          style: TextStyle(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14)),
+                      subtitle: const Text(
+                          'Sync offline cache with Supabase backend',
+                          style: TextStyle(
+                              color: AppColors.textMuted, fontSize: 12)),
+                      trailing:
+                          const Icon(Icons.sync, color: AppColors.cyberCyan),
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Offline progress synchronized successfully!')),
+                          const SnackBar(
+                              content: Text(
+                                  'Offline progress synchronized successfully!')),
                         );
                       },
                     ),
@@ -198,17 +239,26 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       tileColor: AppColors.bgCard,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(color: AppColors.neonRed.withValues(alpha: 0.3)),
+                        side: BorderSide(
+                            color: AppColors.neonRed.withValues(alpha: 0.3)),
                       ),
-                      leading: const Icon(Icons.logout, color: AppColors.neonRed),
-                      title: const Text('Log Out of Terminal', style: TextStyle(color: AppColors.neonRed, fontWeight: FontWeight.bold, fontSize: 14)),
-                      subtitle: const Text('Disconnect user session safely', style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
+                      leading:
+                          const Icon(Icons.logout, color: AppColors.neonRed),
+                      title: const Text('Log Out of Terminal',
+                          style: TextStyle(
+                              color: AppColors.neonRed,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14)),
+                      subtitle: const Text('Disconnect user session safely',
+                          style: TextStyle(
+                              color: AppColors.textMuted, fontSize: 12)),
                       onTap: () async {
                         final confirm = await showDialog<bool>(
                           context: context,
                           builder: (ctx) => AlertDialog(
                             backgroundColor: AppColors.bgCard,
-                            title: const Text('Sign Out?', style: TextStyle(color: Colors.white)),
+                            title: const Text('Sign Out?',
+                                style: TextStyle(color: Colors.white)),
                             content: const Text(
                               'Are you sure you want to end your current session?',
                               style: TextStyle(color: AppColors.textSecondary),
@@ -216,11 +266,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(ctx, false),
-                                child: const Text('Cancel', style: TextStyle(color: AppColors.textMuted)),
+                                child: const Text('Cancel',
+                                    style:
+                                        TextStyle(color: AppColors.textMuted)),
                               ),
                               ElevatedButton(
                                 onPressed: () => Navigator.pop(ctx, true),
-                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.neonRed),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.neonRed),
                                 child: const Text('Sign Out'),
                               ),
                             ],
@@ -275,8 +328,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         border: Border.all(color: AppColors.borderColor),
       ),
       child: SwitchListTile(
-        title: Text(title, style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600, fontSize: 14)),
-        subtitle: Text(subtitle, style: const TextStyle(color: AppColors.textMuted, fontSize: 12)),
+        title: Text(title,
+            style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w600,
+                fontSize: 14)),
+        subtitle: Text(subtitle,
+            style: const TextStyle(color: AppColors.textMuted, fontSize: 12)),
         secondary: Icon(icon, color: AppColors.cyberCyan),
         value: value,
         activeThumbColor: AppColors.cyberCyan,

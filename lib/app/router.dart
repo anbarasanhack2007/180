@@ -42,7 +42,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: AppRoutes.splash,
     refreshListenable: GoRouterRefreshStream(
-      ref.watch(authStateProvider.stream),
+      ref.watch(authRepositoryProvider).authStateChanges,
     ),
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepositoryProvider).isSignedIn;
@@ -55,7 +55,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         return AppRoutes.login;
       }
 
-      if (isLoggedIn && isAuthRoute &&
+      if (isLoggedIn &&
+          isAuthRoute &&
           state.matchedLocation != AppRoutes.splash) {
         final needsOnboarding = ref.read(needsOnboardingProvider);
         if (needsOnboarding) return AppRoutes.onboarding;

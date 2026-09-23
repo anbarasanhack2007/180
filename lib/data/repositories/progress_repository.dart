@@ -36,9 +36,7 @@ class ProgressRepositoryImpl implements ProgressRepository {
         .select()
         .eq('user_id', userId)
         .eq('completed', true);
-    return (data as List)
-        .map((e) => DailyProgressModel.fromJson(e))
-        .toList();
+    return (data as List).map((e) => DailyProgressModel.fromJson(e)).toList();
   }
 
   @override
@@ -101,8 +99,7 @@ class ProgressRepositoryImpl implements ProgressRepository {
       'user_id': userId,
       'checklist_item_id': checklistItemId,
       'completed': completed,
-      if (completed)
-        'completed_at': DateTime.now().toIso8601String(),
+      if (completed) 'completed_at': DateTime.now().toIso8601String(),
     });
   }
 
@@ -142,8 +139,7 @@ class ProgressRepositoryImpl implements ProgressRepository {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getStudySessions(
-      String userId) async {
+  Future<List<Map<String, dynamic>>> getStudySessions(String userId) async {
     final data = await SupabaseService.studySessions
         .select()
         .eq('user_id', userId)
@@ -180,8 +176,8 @@ class ProgressRepositoryImpl implements ProgressRepository {
     if (lastActivity == null) {
       newCurrentStreak = 1;
     } else {
-      final lastDate = DateTime(
-          lastActivity.year, lastActivity.month, lastActivity.day);
+      final lastDate =
+          DateTime(lastActivity.year, lastActivity.month, lastActivity.day);
       final diff = todayDate.difference(lastDate).inDays;
       if (diff == 0) {
         // Already updated today
@@ -193,10 +189,9 @@ class ProgressRepositoryImpl implements ProgressRepository {
       }
     }
 
-    final newLongest =
-        newCurrentStreak > streak.longestStreak
-            ? newCurrentStreak
-            : streak.longestStreak;
+    final newLongest = newCurrentStreak > streak.longestStreak
+        ? newCurrentStreak
+        : streak.longestStreak;
 
     await SupabaseService.streaks.upsert({
       'user_id': userId,

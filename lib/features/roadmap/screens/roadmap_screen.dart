@@ -72,13 +72,11 @@ class RoadmapScreen extends ConsumerWidget {
                       children: [
                         Text(
                           '🛡️ YOUR CYBER JOURNEY',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(
-                                color: AppColors.cyberCyan,
-                                fontWeight: FontWeight.w700,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: AppColors.cyberCyan,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                         ),
                         const SizedBox(height: 4),
                         Text(
@@ -157,7 +155,8 @@ class RoadmapScreen extends ConsumerWidget {
       child: Column(
         children: [
           const SizedBox(height: 48),
-          const Icon(Icons.hourglass_empty, color: AppColors.textHint, size: 48),
+          const Icon(Icons.hourglass_empty,
+              color: AppColors.textHint, size: 48),
           const SizedBox(height: 16),
           Text(
             'Curriculum not loaded yet.\nContact your admin.',
@@ -189,10 +188,10 @@ class _MonthCard extends ConsumerWidget {
         decoration: BoxDecoration(
           color: AppColors.bgCard,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: color.withOpacity(0.25)),
+          border: Border.all(color: color.withValues(alpha: 0.25)),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.06),
+              color: color.withValues(alpha: 0.06),
               blurRadius: 12,
               spreadRadius: 1,
             ),
@@ -204,7 +203,7 @@ class _MonthCard extends ConsumerWidget {
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
+                color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(

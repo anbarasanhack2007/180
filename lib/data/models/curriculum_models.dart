@@ -25,14 +25,14 @@ class MonthModel extends Month {
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'month_number': monthNumber,
-    'title': title,
-    'description': description,
-    'objectives': objectives,
-    'days_start': daysStart,
-    'days_end': daysEnd,
-  };
+        'id': id,
+        'month_number': monthNumber,
+        'title': title,
+        'description': description,
+        'objectives': objectives,
+        'days_start': daysStart,
+        'days_end': daysEnd,
+      };
 }
 
 class WeekModel extends Week {
@@ -55,12 +55,12 @@ class WeekModel extends Week {
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'month_id': monthId,
-    'week_number': weekNumber,
-    'title': title,
-    'objective': objective,
-  };
+        'id': id,
+        'month_id': monthId,
+        'week_number': weekNumber,
+        'title': title,
+        'objective': objective,
+      };
 }
 
 class ResourceModel extends Resource {
@@ -91,16 +91,16 @@ class ResourceModel extends Resource {
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'title': title,
-    'platform': platform,
-    'resource_type': resourceType,
-    if (url != null) 'url': url,
-    if (channelName != null) 'channel_name': channelName,
-    if (searchQuery != null) 'search_query': searchQuery,
-    if (description != null) 'description': description,
-    'difficulty': difficulty,
-  };
+        'id': id,
+        'title': title,
+        'platform': platform,
+        'resource_type': resourceType,
+        if (url != null) 'url': url,
+        if (channelName != null) 'channel_name': channelName,
+        if (searchQuery != null) 'search_query': searchQuery,
+        if (description != null) 'description': description,
+        'difficulty': difficulty,
+      };
 }
 
 class ChecklistItemModel extends ChecklistItem {
@@ -156,11 +156,14 @@ class DailyTaskModel extends DailyTask {
       estimatedMinutes: json['estimated_minutes'] as int? ?? 60,
       isExam: json['is_exam'] as bool? ?? false,
       checklistItems: checklist ?? [],
-      resources: resources?.map((r) => DailyResource(
-        dayTaskId: json['id'] as String,
-        resourceId: r.id,
-        resource: r,
-      )).toList() ?? [],
+      resources: resources
+              ?.map((r) => DailyResource(
+                    dayTaskId: json['id'] as String,
+                    resourceId: r.id,
+                    resource: r,
+                  ))
+              .toList() ??
+          [],
     );
   }
 }
@@ -185,11 +188,11 @@ class DailyProgressModel extends DailyProgress {
   }
 
   Map<String, dynamic> toJson() => {
-    'user_id': userId,
-    'day_task_id': dayTaskId,
-    'completed': completed,
-    if (completedAt != null) 'completed_at': completedAt!.toIso8601String(),
-  };
+        'user_id': userId,
+        'day_task_id': dayTaskId,
+        'completed': completed,
+        if (completedAt != null) 'completed_at': completedAt!.toIso8601String(),
+      };
 }
 
 class ChecklistProgressModel extends ChecklistProgress {
@@ -212,11 +215,11 @@ class ChecklistProgressModel extends ChecklistProgress {
   }
 
   Map<String, dynamic> toJson() => {
-    'user_id': userId,
-    'checklist_item_id': checklistItemId,
-    'completed': completed,
-    if (completedAt != null) 'completed_at': completedAt!.toIso8601String(),
-  };
+        'user_id': userId,
+        'checklist_item_id': checklistItemId,
+        'completed': completed,
+        if (completedAt != null) 'completed_at': completedAt!.toIso8601String(),
+      };
 }
 
 class StreakModel extends Streak {
